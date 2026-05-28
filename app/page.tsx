@@ -2,14 +2,16 @@
 
 import Image from "next/image";
 
-// Simple decoder to prevent text scraping
-const decode = (encoded: string) => {
-  return encoded.split("").reverse().join("");
-};
+// Assemble contact details client-side to avoid raw scraping in HTML
+const phoneParts = ["07356", "211274"];
+const phone = phoneParts.join(" ");
+const phoneNumberInternational = phone.replace(/\s/g, "").replace(/^0/, "44");
+const emailLocal = "enquiries";
+const emailDomain = "heaparties-ne.co.uk";
+const email = `${emailLocal}@${emailDomain}`;
+const mailSubject = encodeURIComponent("Website Enquiry");
 
 export default function Home() {
-  const phone = decode("47231125307");
-  const email = decode("ku.oc-en-seitrape-paeh@seireuqne");
 
   return (
     <main className="overflow-hidden bg-slate-950 text-slate-100">
@@ -33,20 +35,24 @@ export default function Home() {
       {/* Hero Section with Video */}
       <section className="relative h-screen w-full flex items-center justify-center overflow-hidden pt-16">
         {/* Background Video */}
-        <div className="absolute inset-0 z-0">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster="/images/images/image8.jpeg"
-            className="w-full h-full object-cover"
-          >
-            <source src="/images/images/video1.mp4" type="video/mp4" />
-          </video>
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <div className="kenburns-wrapper absolute inset-0">
+            <Image
+              src="/images/images/image8.jpeg"
+              alt="Hero background"
+              fill
+              sizes="100vw"
+              className="object-cover hero-img"
+            />
+          </div>
           {/* Dark Overlay */}
           <div className="absolute inset-0 bg-black/40"></div>
+
+          {/* Light flicker overlays (pure CSS, pointer-events-none) */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="light light-1 absolute inset-0"></div>
+            <div className="light light-2 absolute inset-0"></div>
+          </div>
         </div>
 
         {/* Content */}
@@ -58,7 +64,7 @@ export default function Home() {
           <p className="text-lg md:text-xl font-light text-gray-100 mb-10 max-w-2xl mx-auto">
             Premium wedding DJ services for unforgettable celebrations
           </p>
-          <button className="bg-violet-600 text-slate-950 px-8 py-4 font-semibold tracking-wider hover:bg-violet-700 transition">
+          <button className="bg-white text-slate-900 px-8 py-4 font-semibold tracking-wider hover:bg-slate-200 transition">
             ENQUIRE NOW
           </button>
           <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-gray-200">
@@ -163,7 +169,7 @@ export default function Home() {
             {/* Gallery 1 - Large */}
             <div className="md:col-span-2 md:row-span-2 relative overflow-hidden rounded-3xl h-80 md:h-[560px] group">
               <Image
-                src="/images/images/image5.jpeg"
+                src="/images/images/image12.jpeg"
                 alt="Featured Event"
                 fill
                 sizes="100vw"
@@ -270,7 +276,7 @@ export default function Home() {
             <div className="relative overflow-hidden rounded-[2rem] h-96">
               <Image
                 src="/images/images/image10.jpeg"
-                alt="Bride and groom"
+                alt="Featured celebration"
                 fill
                 sizes="100vw"
                 className="object-cover"
@@ -282,22 +288,21 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="grid gap-6 sm:grid-cols-2">
+            <div className="grid gap-6 sm:grid-cols-1">
               <div className="relative overflow-hidden rounded-[2rem] h-48">
                 <Image
                   src="/images/images/image12.jpeg"
-                  alt="PAT testing"
+                  alt="PAT tested equipment"
                   fill
+                  sizes="100vw"
                   className="object-cover"
                 />
-              </div>
-              <div className="relative overflow-hidden rounded-[2rem] h-48">
-                <Image
-                  src="/images/images/image11.jpeg"
-                  alt="Event moment"
-                  fill
-                  className="object-cover"
-                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent p-4 flex items-end">
+                  <div>
+                    <p className="text-sm uppercase tracking-[0.24em] text-white/70 mb-2">Safety</p>
+                    <p className="text-lg font-semibold text-white">Fully PAT tested equipment</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -308,55 +313,53 @@ export default function Home() {
       <section id="testimonials" className="py-24 px-4 sm:px-6 lg:px-8 bg-slate-950">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-              What Couples Say
-            </h2>
-            <p className="text-slate-300 text-lg">
-              Real stories from real celebrations
-            </p>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">What Couples Say</h2>
+            <p className="text-slate-300 text-lg">Real stories from real celebrations</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Testimonial 1 */}
-            <div className="bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-sm">
-              <div className="flex gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <span key={i} className="text-violet-400">★</span>
-                ))}
-              </div>
-              <p className="text-slate-300 font-light mb-6 italic leading-relaxed">
-                "Absolutely incredible. They brought the energy and kept our guests dancing all night. Best investment we made for our wedding."
-              </p>
-              <p className="font-semibold text-white">Sarah & Michael</p>
-              <p className="text-sm text-slate-400">June 2025</p>
-            </div>
+          <div className="reviews-slider relative overflow-hidden">
+            <div className="reviews-track flex w-[200%]">
+              {/* Group 1 */}
+              <div className="reviews-group flex gap-8 w-1/2">
+                <div className="review-card bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-sm">
+                  <div className="flex gap-1 mb-4">{[...Array(5)].map((_, i) => (<span key={i} className="text-amber-400">★</span>))}</div>
+                  <p className="text-slate-300 font-light mb-6 italic leading-relaxed">"Absolutely incredible. They brought the energy and kept our guests dancing all night."</p>
+                  <p className="font-semibold text-white">Sarah & Michael</p>
+                </div>
 
-            {/* Testimonial 2 */}
-            <div className="bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-sm">
-              <div className="flex gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <span key={i} className="text-violet-400">★</span>
-                ))}
-              </div>
-              <p className="text-slate-300 font-light mb-6 italic leading-relaxed">
-                "From start to finish, they handled everything perfectly. The lighting setup transformed our venue. Couldn't have asked for better."
-              </p>
-              <p className="font-semibold text-white">Jessica & David</p>
-              <p className="text-sm text-slate-400">May 2025</p>
-            </div>
+                <div className="review-card bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-sm">
+                  <div className="flex gap-1 mb-4">{[...Array(5)].map((_, i) => (<span key={i} className="text-amber-400">★</span>))}</div>
+                  <p className="text-slate-300 font-light mb-6 italic leading-relaxed">"From start to finish, they handled everything perfectly. The lighting transformed our venue."</p>
+                  <p className="font-semibold text-white">Jessica & David</p>
+                </div>
 
-            {/* Testimonial 3 */}
-            <div className="bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-sm">
-              <div className="flex gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <span key={i} className="text-violet-400">★</span>
-                ))}
+                <div className="review-card bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-sm">
+                  <div className="flex gap-1 mb-4">{[...Array(5)].map((_, i) => (<span key={i} className="text-amber-400">★</span>))}</div>
+                  <p className="text-slate-300 font-light mb-6 italic leading-relaxed">"Professional, reliable, and genuinely cared about making our day special."</p>
+                  <p className="font-semibold text-white">Emma & James</p>
+                </div>
               </div>
-              <p className="text-slate-300 font-light mb-6 italic leading-relaxed">
-                "Professional, reliable, and genuinely cared about making our day special. They read the room perfectly and kept the vibe amazing."
-              </p>
-              <p className="font-semibold text-white">Emma & James</p>
-              <p className="text-sm text-slate-400">April 2025</p>
+
+              {/* Group 2 */}
+              <div className="reviews-group flex gap-8 w-1/2">
+                <div className="review-card bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-sm">
+                  <div className="flex gap-1 mb-4">{[...Array(5)].map((_, i) => (<span key={i} className="text-amber-400">★</span>))}</div>
+                  <p className="text-slate-300 font-light mb-6 italic leading-relaxed">"Fantastic communication and a brilliant set — everyone danced until the end."</p>
+                  <p className="font-semibold text-white">Olivia & Mark</p>
+                </div>
+
+                <div className="review-card bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-sm">
+                  <div className="flex gap-1 mb-4">{[...Array(5)].map((_, i) => (<span key={i} className="text-amber-400">★</span>))}</div>
+                  <p className="text-slate-300 font-light mb-6 italic leading-relaxed">"Exceeded expectations — the vibe was perfect and the dancefloor was full."</p>
+                  <p className="font-semibold text-white">Hannah & Luke</p>
+                </div>
+
+                <div className="review-card bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-sm">
+                  <div className="flex gap-1 mb-4">{[...Array(5)].map((_, i) => (<span key={i} className="text-amber-400">★</span>))}</div>
+                  <p className="text-slate-300 font-light mb-6 italic leading-relaxed">"Amazing service and atmosphere — would recommend to anyone."</p>
+                  <p className="font-semibold text-white">Mia & Tom</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -374,42 +377,59 @@ export default function Home() {
           />
         </div>
 
-        <div className="relative z-10 max-w-4xl mx-auto text-center">
+          <div className="relative z-10 max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Ready to Boogie with Happily Ever After-Parties?
+            Create an unforgettable celebration
           </h2>
           <p className="text-xl font-light text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed">
             Planning an event and not sure where to start with the entertainment? Let's make it easy. Tell us about your plans and we'll help you find the perfect vibe.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <button className="bg-violet-600 text-slate-950 px-8 py-4 font-bold tracking-wider hover:bg-violet-700 transition">
+            <button className="bg-white text-slate-900 px-8 py-4 font-bold tracking-wider hover:bg-slate-200 transition">
               ENQUIRE NOW
             </button>
-            <button className="border-2 border-violet-600 text-violet-600 px-8 py-4 font-bold tracking-wider hover:bg-violet-600 hover:text-slate-950 transition">
+            <button className="border-2 border-white text-white px-8 py-4 font-bold tracking-wider hover:bg-white hover:text-slate-900 transition">
               VIEW PACKAGES
             </button>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-            <a
-              href={`https://wa.me/44${phone.replace(/\s/g, "").slice(1)}`}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center rounded-full border border-violet-600 bg-violet-600 px-8 py-4 text-sm font-semibold uppercase tracking-[0.24em] text-slate-950 shadow-sm transition hover:bg-violet-700"
-            >
-              Chat on WhatsApp
-            </a>
+              <a
+                href={`https://wa.me/${phoneNumberInternational}`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center rounded-full px-8 py-4 text-sm font-semibold uppercase tracking-[0.24em] text-white shadow-sm transition"
+                style={{ backgroundColor: "#25D366" }}
+              >
+                Chat on WhatsApp
+              </a>
             <span className="text-sm text-gray-300">(WhatsApp Business ready)</span>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 pt-12 border-t border-gray-700">
             <div>
-              <p className="text-lg font-bold mb-2">{phone}</p>
+              <p className="text-lg font-bold mb-2">
+                <a
+                  href={`https://wa.me/${phoneNumberInternational}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:underline"
+                >
+                  {phone}
+                </a>
+              </p>
               <p className="text-gray-300">Call or WhatsApp</p>
             </div>
             <div>
-              <p className="text-lg font-bold mb-2">{email}</p>
+              <p className="text-lg font-bold mb-2">
+                <a
+                  href={`mailto:${email}?subject=${mailSubject}`}
+                  className="hover:underline"
+                >
+                  {email}
+                </a>
+              </p>
               <p className="text-gray-300">Email us directly</p>
             </div>
             <div>

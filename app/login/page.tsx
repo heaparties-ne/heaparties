@@ -43,7 +43,7 @@ export default function LoginPage() {
     <main className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center px-4">
       <div className="w-full max-w-xl rounded-[2rem] border border-violet-700 bg-gradient-to-br from-slate-950 via-slate-900 to-violet-950/70 p-10 shadow-[0_30px_80px_-30px_rgba(139,92,246,0.9)] ring-1 ring-violet-500/20 backdrop-blur-xl">
         <div className="mb-10 text-center">
-          <p className="text-sm uppercase tracking-[0.35em] text-violet-300 mb-4">Private preview</p>
+          <p className="text-sm uppercase tracking-[0.35em] text-slate-300 mb-4">Private preview</p>
           <h1 className="text-4xl font-bold tracking-tight text-white">Happily Ever After-Parties NE LTD</h1>
           <p className="mt-4 text-slate-300 leading-relaxed">
             Enter your password to view the site. This page protects the preview while the build is online.
@@ -81,7 +81,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-3xl bg-violet-600 px-6 py-4 text-sm font-semibold uppercase tracking-[0.24em] text-slate-950 transition hover:bg-violet-700 disabled:cursor-not-allowed disabled:opacity-60"
+            className="w-full rounded-3xl bg-white px-6 py-4 text-sm font-semibold uppercase tracking-[0.24em] text-slate-900 transition hover:bg-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {loading ? "Checking..." : "Unlock Preview"}
           </button>

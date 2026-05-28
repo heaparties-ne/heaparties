@@ -24,3 +24,81 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Ken Burns effect for hero image (apply to wrapper so Image fill works reliably) */
+.kenburns-wrapper {
+  will-change: transform;
+  overflow: hidden;
+}
+.kenburns-wrapper .hero-img {
+  transform-origin: center;
+  animation: kenburns 36s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes kenburns {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  35% {
+    transform: scale(1.18) translate(-4%, -2%);
+  }
+  65% {
+    transform: scale(1.12) translate(-2%, -1%);
+  }
+  100% {
+    transform: scale(1) translate(0, 0);
+  }
+}
+
+/* Light flicker overlays to add ambient movement */
+.light {
+  mix-blend-mode: screen;
+  opacity: 0;
+  background-repeat: no-repeat;
+}
+.light-1 {
+  background-image: radial-gradient(circle at 18% 28%, rgba(255,230,200,0.22), transparent 14%), radial-gradient(circle at 78% 72%, rgba(200,170,255,0.16), transparent 22%);
+  filter: blur(36px);
+  animation: flicker 5.8s infinite linear, drift 20s infinite linear;
+  opacity: 0.0;
+}
+.light-2 {
+  background-image: radial-gradient(circle at 42% 62%, rgba(255,240,220,0.18), transparent 12%), radial-gradient(circle at 74% 24%, rgba(190,150,255,0.12), transparent 20%);
+  filter: blur(46px);
+  animation: flicker 8.4s infinite linear, drift 28s infinite linear;
+  opacity: 0.0;
+}
+
+@keyframes flicker {
+  0% { opacity: 0; }
+  4% { opacity: 0.36; }
+  10% { opacity: 0.06; }
+  22% { opacity: 0.22; }
+  40% { opacity: 0.02; }
+  58% { opacity: 0.28; }
+  76% { opacity: 0.1; }
+  100% { opacity: 0; }
+}
+
+@keyframes drift {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 10% 6%; }
+  100% { background-position: 0% 0%; }
+}
+
+/* Reviews slider */
+.reviews-slider { position: relative; }
+.reviews-track { display: flex; width: 200%; gap: 2rem; }
+.reviews-group { display: flex; gap: 2rem; width: 50%; }
+.review-card { flex: 0 0 calc(33.333% - 1.333rem); }
+
+/* slide: hold 10s, transition 1s, hold 10s, transition back 1s => 22s total */
+@keyframes slideReviews {
+  0% { transform: translateX(0%); }
+  45.4545% { transform: translateX(0%); }
+  50% { transform: translateX(-50%); }
+  95.4545% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+.reviews-track { animation: slideReviews 22s linear infinite; }
