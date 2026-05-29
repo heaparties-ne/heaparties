@@ -10,6 +10,7 @@ const emailLocal = "enquiries";
 const emailDomain = "heaparties-ne.co.uk";
 const email = `${emailLocal}@${emailDomain}`;
 const mailSubject = encodeURIComponent("Website Enquiry");
+const mailtoHref = `mailto:${email}?subject=${mailSubject}`;
 
 export default function Home() {
 
@@ -32,9 +33,9 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Hero Section with Video */}
+      {/* Hero Section */}
       <section className="relative h-screen w-full flex items-center justify-center overflow-hidden pt-16">
-        {/* Background Video */}
+        {/* Background image with Ken Burns effect */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <div className="kenburns-wrapper absolute inset-0">
             <Image
@@ -64,9 +65,12 @@ export default function Home() {
           <p className="text-lg md:text-xl font-light text-gray-100 mb-10 max-w-2xl mx-auto">
             Premium wedding DJ services for unforgettable celebrations
           </p>
-          <button className="bg-white text-slate-900 px-8 py-4 font-semibold tracking-wider hover:bg-slate-200 transition">
+          <a
+            href={mailtoHref}
+            className="inline-flex items-center justify-center bg-white text-slate-900 px-8 py-4 font-semibold tracking-wider hover:bg-slate-200 transition"
+          >
             ENQUIRE NOW
-          </button>
+          </a>
           <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-gray-200">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-4 py-2">
               <strong>25 years DJ experience</strong>
@@ -161,7 +165,7 @@ export default function Home() {
               Our Events
             </h2>
             <p className="text-slate-300 text-lg">
-              Beautiful celebrations we've been part of
+              Beautiful celebrations we&apos;ve been part of
             </p>
           </div>
 
@@ -323,19 +327,19 @@ export default function Home() {
               <div className="reviews-group flex gap-8 w-1/2">
                 <div className="review-card bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-sm">
                   <div className="flex gap-1 mb-4">{[...Array(5)].map((_, i) => (<span key={i} className="text-amber-400">★</span>))}</div>
-                  <p className="text-slate-300 font-light mb-6 italic leading-relaxed">"Absolutely incredible. They brought the energy and kept our guests dancing all night."</p>
+                  <p className="text-slate-300 font-light mb-6 italic leading-relaxed">&ldquo;Absolutely incredible. They brought the energy and kept our guests dancing all night.&rdquo;</p>
                   <p className="font-semibold text-white">Sarah & Michael</p>
                 </div>
 
                 <div className="review-card bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-sm">
                   <div className="flex gap-1 mb-4">{[...Array(5)].map((_, i) => (<span key={i} className="text-amber-400">★</span>))}</div>
-                  <p className="text-slate-300 font-light mb-6 italic leading-relaxed">"From start to finish, they handled everything perfectly. The lighting transformed our venue."</p>
+                  <p className="text-slate-300 font-light mb-6 italic leading-relaxed">&ldquo;From start to finish, they handled everything perfectly. The lighting transformed our venue.&rdquo;</p>
                   <p className="font-semibold text-white">Jessica & David</p>
                 </div>
 
                 <div className="review-card bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-sm">
                   <div className="flex gap-1 mb-4">{[...Array(5)].map((_, i) => (<span key={i} className="text-amber-400">★</span>))}</div>
-                  <p className="text-slate-300 font-light mb-6 italic leading-relaxed">"Professional, reliable, and genuinely cared about making our day special."</p>
+                  <p className="text-slate-300 font-light mb-6 italic leading-relaxed">&ldquo;Professional, reliable, and genuinely cared about making our day special.&rdquo;</p>
                   <p className="font-semibold text-white">Emma & James</p>
                 </div>
               </div>
@@ -344,19 +348,19 @@ export default function Home() {
               <div className="reviews-group flex gap-8 w-1/2">
                 <div className="review-card bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-sm">
                   <div className="flex gap-1 mb-4">{[...Array(5)].map((_, i) => (<span key={i} className="text-amber-400">★</span>))}</div>
-                  <p className="text-slate-300 font-light mb-6 italic leading-relaxed">"Fantastic communication and a brilliant set — everyone danced until the end."</p>
+                  <p className="text-slate-300 font-light mb-6 italic leading-relaxed">&ldquo;Fantastic communication and a brilliant set — everyone danced until the end.&rdquo;</p>
                   <p className="font-semibold text-white">Olivia & Mark</p>
                 </div>
 
                 <div className="review-card bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-sm">
                   <div className="flex gap-1 mb-4">{[...Array(5)].map((_, i) => (<span key={i} className="text-amber-400">★</span>))}</div>
-                  <p className="text-slate-300 font-light mb-6 italic leading-relaxed">"Exceeded expectations — the vibe was perfect and the dancefloor was full."</p>
+                  <p className="text-slate-300 font-light mb-6 italic leading-relaxed">&ldquo;Exceeded expectations — the vibe was perfect and the dancefloor was full.&rdquo;</p>
                   <p className="font-semibold text-white">Hannah & Luke</p>
                 </div>
 
                 <div className="review-card bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-sm">
                   <div className="flex gap-1 mb-4">{[...Array(5)].map((_, i) => (<span key={i} className="text-amber-400">★</span>))}</div>
-                  <p className="text-slate-300 font-light mb-6 italic leading-relaxed">"Amazing service and atmosphere — would recommend to anyone."</p>
+                  <p className="text-slate-300 font-light mb-6 italic leading-relaxed">&ldquo;Amazing service and atmosphere — would recommend to anyone.&rdquo;</p>
                   <p className="font-semibold text-white">Mia & Tom</p>
                 </div>
               </div>
@@ -382,13 +386,16 @@ export default function Home() {
             Create an unforgettable celebration
           </h2>
           <p className="text-xl font-light text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Planning an event and not sure where to start with the entertainment? Let's make it easy. Tell us about your plans and we'll help you find the perfect vibe.
+            Planning an event and not sure where to start with the entertainment? Let&apos;s make it easy. Tell us about your plans and we&apos;ll help you find the perfect vibe.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <button className="bg-white text-slate-900 px-8 py-4 font-bold tracking-wider hover:bg-slate-200 transition">
+            <a
+              href={mailtoHref}
+              className="inline-flex items-center justify-center bg-white text-slate-900 px-8 py-4 font-bold tracking-wider hover:bg-slate-200 transition"
+            >
               ENQUIRE NOW
-            </button>
+            </a>
             <button className="border-2 border-white text-white px-8 py-4 font-bold tracking-wider hover:bg-white hover:text-slate-900 transition">
               VIEW PACKAGES
             </button>
@@ -424,7 +431,7 @@ export default function Home() {
             <div>
               <p className="text-lg font-bold mb-2">
                 <a
-                  href={`mailto:${email}?subject=${mailSubject}`}
+                  href={mailtoHref}
                   className="hover:underline"
                 >
                   {email}

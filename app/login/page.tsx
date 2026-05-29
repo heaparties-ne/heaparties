@@ -1,22 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-export default function LoginPage() {
+const invalidLoginMessage = "Incorrect username or password. Try again.";
+
+function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
-  const errorQuery = searchParams.get("error");
-
-  useEffect(() => {
-    if (!error && errorQuery === "invalid") {
-      setError("Incorrect username or password. Try again.");
-    }
-  }, [error, errorQuery]);
+  const [error, setError] = useState(() =>
+    searchParams.get("error") === "invalid" ? invalidLoginMessage : "",
+  );
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -35,7 +32,7 @@ export default function LoginPage() {
     if (response.ok) {
       router.push("/");
     } else {
-      setError("Incorrect username or password. Try again.");
+      setError(invalidLoginMessage);
     }
   };
 
@@ -88,5 +85,13 @@ export default function LoginPage() {
         </form>
       </div>
     </main>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={null}>
+      <LoginForm />
+    </Suspense>
   );
 }
