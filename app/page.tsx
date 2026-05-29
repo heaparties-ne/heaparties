@@ -39,6 +39,29 @@ function MixcloudIcon() {
   );
 }
 
+function WhatsAppIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-5 w-5 shrink-0"
+      fill="none"
+    >
+      <path
+        d="M5.3 18.8 6.4 15.6A7.6 7.6 0 1 1 9 18.2L5.3 18.8Z"
+        stroke="currentColor"
+        strokeWidth="1.9"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9.2 8.3c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.7 1.6c.1.3 0 .5-.2.7l-.4.5c.7 1.2 1.7 2.1 2.9 2.7l.5-.5c.2-.2.5-.3.8-.1l1.5.7c.3.1.4.3.4.6v.4c0 .4-.1.6-.4.8-.5.4-1.1.6-1.8.6-2.7 0-6.8-3.6-6.8-6.8 0-.5.2-.9.6-1.2Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
 export default function Home() {
 
   return (
@@ -433,9 +456,10 @@ export default function Home() {
                 href={`https://wa.me/${phoneNumberInternational}`}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-full px-8 py-4 text-sm font-semibold uppercase tracking-[0.24em] text-white shadow-sm transition"
+                className="inline-flex items-center justify-center gap-3 rounded-full px-8 py-4 text-sm font-semibold uppercase tracking-[0.24em] text-white shadow-sm transition hover:brightness-110"
                 style={{ backgroundColor: "#25D366" }}
               >
+                <WhatsAppIcon />
                 Chat on WhatsApp
               </a>
               <a
