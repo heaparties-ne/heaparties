@@ -451,7 +451,7 @@ export default function Home() {
             </button>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+          <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center gap-4 mb-12">
             <div className="flex flex-col items-center gap-2">
               <a
                 href={`https://wa.me/${phoneNumberInternational}`}
