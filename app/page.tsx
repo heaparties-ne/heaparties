@@ -19,7 +19,7 @@ function MixcloudIcon() {
     <svg
       aria-hidden="true"
       viewBox="0 0 28 18"
-      className="h-4 w-7 shrink-0"
+      className="h-4 w-7 shrink-0 translate-y-0.5"
       fill="none"
     >
       <path
