@@ -173,7 +173,7 @@ export default function Home() {
             {/* Gallery 1 - Large */}
             <div className="md:col-span-2 md:row-span-2 relative overflow-hidden rounded-3xl h-80 md:h-[560px] group">
               <Image
-                src="/images/images/image12.jpeg"
+                src="/images/images/image5.jpeg"
                 alt="Featured Event"
                 fill
                 sizes="100vw"
