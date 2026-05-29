@@ -452,6 +452,7 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+            <div className="flex flex-col items-center gap-2">
               <a
                 href={`https://wa.me/${phoneNumberInternational}`}
                 target="_blank"
@@ -462,6 +463,8 @@ export default function Home() {
                 <WhatsAppIcon />
                 Chat on WhatsApp
               </a>
+              <span className="text-sm text-gray-300">(WhatsApp Business ready)</span>
+            </div>
               <a
                 href={mixcloudUrl}
                 target="_blank"
@@ -472,7 +475,6 @@ export default function Home() {
                 <MixcloudIcon />
                 Listen on Mixcloud
               </a>
-            <span className="text-sm text-gray-300">(WhatsApp Business ready)</span>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 pt-12 border-t border-gray-700">
