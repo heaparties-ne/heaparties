@@ -101,7 +101,7 @@ export default function Home() {
             {/* Vibe 1 */}
             <div className="group cursor-pointer relative overflow-hidden rounded-lg h-64 md:h-80">
               <Image
-                src="/images/images/image1.jpeg"
+                src="/images/images/image14.jpeg"
                 alt="Ceremony & Reception"
                 fill
                 sizes="100vw"
@@ -223,7 +223,7 @@ export default function Home() {
             {/* Gallery 5 */}
             <div className="relative overflow-hidden rounded-3xl h-72 group">
               <Image
-                src="/images/images/image14.jpeg"
+                src="/images/images/image1.jpeg"
                 alt="Gallery Event 5"
                 fill
                 sizes="100vw"
