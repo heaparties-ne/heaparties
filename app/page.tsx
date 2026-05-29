@@ -73,7 +73,7 @@ export default function Home() {
           </a>
           <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-gray-200">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-4 py-2">
-              <strong>25 years DJ experience</strong>
+              25 years DJ experience
             </span>
             <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-4 py-2">
               PAT tested equipment
