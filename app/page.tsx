@@ -212,7 +212,7 @@ export default function Home() {
             {/* Gallery 4 */}
             <div className="relative overflow-hidden rounded-3xl h-72 group">
               <Image
-                src="/images/images/image8.jpeg"
+                src="/images/images/image9.jpeg"
                 alt="Gallery Event 4"
                 fill
                 sizes="100vw"
@@ -223,7 +223,7 @@ export default function Home() {
             {/* Gallery 5 */}
             <div className="relative overflow-hidden rounded-3xl h-72 group">
               <Image
-                src="/images/images/image9.jpeg"
+                src="/images/images/image14.jpeg"
                 alt="Gallery Event 5"
                 fill
                 sizes="100vw"
