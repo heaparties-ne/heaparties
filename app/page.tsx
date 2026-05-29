@@ -11,6 +11,7 @@ const emailDomain = "heaparties-ne.co.uk";
 const email = `${emailLocal}@${emailDomain}`;
 const mailSubject = encodeURIComponent("Website Enquiry");
 const mailtoHref = `mailto:${email}?subject=${mailSubject}`;
+const mixcloudUrl = "https://www.mixcloud.com/BoroDJ69/";
 
 export default function Home() {
 
@@ -410,6 +411,14 @@ export default function Home() {
                 style={{ backgroundColor: "#25D366" }}
               >
                 Chat on WhatsApp
+              </a>
+              <a
+                href={mixcloudUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center rounded-full border border-white/30 px-8 py-4 text-sm font-semibold uppercase tracking-[0.24em] text-white shadow-sm transition hover:border-white hover:bg-white hover:text-slate-900"
+              >
+                Listen on Mixcloud
               </a>
             <span className="text-sm text-gray-300">(WhatsApp Business ready)</span>
           </div>
