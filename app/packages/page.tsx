@@ -1,11 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 
+const defaultSampleUrl = "https://www.mixcloud.com/BoroDJ69/";
+
 const packages = [
   {
     name: "Classic Wedding",
     title: "Ever After Essentials",
     image: "/images/images/image17.jpeg",
+    sampleUrl: defaultSampleUrl,
     description:
       "A polished wedding soundtrack from ceremony warmth to a full dancefloor finish, tailored around your must-play moments.",
   },
@@ -13,6 +16,7 @@ const packages = [
     name: "Ibiza Vibes",
     title: "White Isle Afterglow",
     image: "/images/images/image13.jpeg",
+    sampleUrl: defaultSampleUrl,
     description:
       "Sunset energy, vocal house, Balearic sparkle and hands-in-the-air classics for couples who want the party to glow.",
   },
@@ -20,6 +24,7 @@ const packages = [
     name: "School Pop Disco",
     title: "Tuck Shop Takeover",
     image: "/images/images/image16.jpeg",
+    sampleUrl: defaultSampleUrl,
     description:
       "Clean pop edits, party games energy and big singalong moments for school discos, family events and younger crowds.",
   },
@@ -27,6 +32,7 @@ const packages = [
     name: "More Indy/Rock",
     title: "Indie Til Midnight",
     image: "/images/images/image15.jpeg",
+    sampleUrl: defaultSampleUrl,
     description:
       "Guitars, anthems, festival favourites and alternative floor-fillers for guests who want more bite in the set.",
   },
@@ -103,6 +109,14 @@ export default function PackagesPage() {
                 <p className="max-w-xl text-base font-light leading-relaxed text-slate-200">
                   {item.description}
                 </p>
+                <a
+                  href={item.sampleUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-6 inline-flex items-center justify-center border border-white/60 px-5 py-3 text-xs font-bold uppercase tracking-[0.24em] text-white transition hover:bg-white hover:text-slate-900"
+                >
+                  Listen to a sample
+                </a>
               </div>
             </article>
           ))}
