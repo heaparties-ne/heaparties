@@ -5,7 +5,7 @@ const packages = [
   {
     name: "Classic Wedding",
     title: "Ever After Essentials",
-    image: "/images/images/image14.jpeg",
+    image: "/images/images/image17.jpeg",
     description:
       "A polished wedding soundtrack from ceremony warmth to a full dancefloor finish, tailored around your must-play moments.",
   },
@@ -19,14 +19,14 @@ const packages = [
   {
     name: "School Pop Disco",
     title: "Tuck Shop Takeover",
-    image: "/images/images/image2.jpeg",
+    image: "/images/images/image16.jpeg",
     description:
       "Clean pop edits, party games energy and big singalong moments for school discos, family events and younger crowds.",
   },
   {
     name: "More Indy/Rock",
     title: "Indie Til Midnight",
-    image: "/images/images/image3.jpeg",
+    image: "/images/images/image15.jpeg",
     description:
       "Guitars, anthems, festival favourites and alternative floor-fillers for guests who want more bite in the set.",
   },
