@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 // Assemble contact details client-side to avoid raw scraping in HTML
 const phoneParts = ["07356", "211274"];
@@ -446,9 +447,12 @@ export default function Home() {
             >
               ENQUIRE NOW
             </a>
-            <button className="border-2 border-white text-white px-8 py-4 font-bold tracking-wider hover:bg-white hover:text-slate-900 transition">
+            <Link
+              href="/packages"
+              className="inline-flex items-center justify-center border-2 border-white text-white px-8 py-4 font-bold tracking-wider hover:bg-white hover:text-slate-900 transition"
+            >
               VIEW PACKAGES
-            </button>
+            </Link>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center gap-4 mb-12">

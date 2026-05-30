@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -37,14 +38,44 @@ function LoginForm() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center px-4">
-      <div className="w-full max-w-xl rounded-[2rem] border border-violet-700 bg-gradient-to-br from-slate-950 via-slate-900 to-violet-950/70 p-10 shadow-[0_30px_80px_-30px_rgba(139,92,246,0.9)] ring-1 ring-violet-500/20 backdrop-blur-xl">
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-950 px-4 py-12 text-slate-100">
+      <div className="absolute inset-0">
+        <Image
+          src="/images/images/image8.jpeg"
+          alt="Wedding celebration"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-black/65" />
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="light light-1 absolute inset-0" />
+          <div className="light light-2 absolute inset-0" />
+        </div>
+      </div>
+
+      <div className="relative z-10 w-full max-w-xl rounded-[2rem] border border-white/15 bg-slate-950/80 p-10 shadow-[0_30px_80px_-30px_rgba(139,92,246,0.9)] ring-1 ring-violet-500/20 backdrop-blur-xl">
         <div className="mb-10 text-center">
-          <p className="text-sm uppercase tracking-[0.35em] text-slate-300 mb-4">Private preview</p>
-          <h1 className="text-4xl font-bold tracking-tight text-white">Happily Ever After-Parties NE LTD</h1>
+          <p className="text-sm uppercase tracking-[0.35em] text-violet-200 mb-4">Private preview</p>
+          <h1 className="text-4xl font-bold tracking-tight text-white">
+            HAPPILY EVER<br />
+            <span className="text-violet-300">AFTER-PARTIES</span>
+          </h1>
           <p className="mt-4 text-slate-300 leading-relaxed">
             Enter your password to view the site. This page protects the preview while the build is online.
           </p>
+          <div className="mt-6 flex flex-col items-center justify-center gap-3 text-xs text-gray-200 sm:flex-row">
+            <span className="inline-flex items-center rounded-full border border-white/20 bg-black/35 px-4 py-2">
+              25 years DJ experience
+            </span>
+            <span className="inline-flex items-center rounded-full border border-white/20 bg-black/35 px-4 py-2">
+              PAT tested equipment
+            </span>
+            <span className="inline-flex items-center rounded-full border border-white/20 bg-black/35 px-4 py-2">
+              £5m public liability
+            </span>
+          </div>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6" autoComplete="off" method="post" action="/api/login/" encType="application/x-www-form-urlencoded" target="_self">
