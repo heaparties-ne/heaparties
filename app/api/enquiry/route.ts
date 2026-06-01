@@ -14,10 +14,38 @@ type EnquiryBody = {
 };
 
 function formatUkDate(dateValue: string) {
-  const [year, month, day] = dateValue.split("-");
-  if (!year || !month || !day) return dateValue || "Not provided";
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateValue);
+  if (!match) return dateValue || "Not provided";
+
+  const [, year, month, day] = match;
 
   return `${day}/${month}/${year}`;
+}
+
+function getClientIp(req: NextRequest) {
+  const forwardedFor = req.headers.get("x-forwarded-for");
+  if (forwardedFor) {
+    return forwardedFor.split(",")[0]?.trim() || "Not available";
+  }
+
+  return (
+    req.headers.get("x-real-ip") ||
+    req.headers.get("x-vercel-forwarded-for") ||
+    req.headers.get("cf-connecting-ip") ||
+    "Not available"
+  );
+}
+
+function getIpLocation(req: NextRequest) {
+  const city = req.headers.get("x-vercel-ip-city");
+  const region = req.headers.get("x-vercel-ip-country-region");
+  const country = req.headers.get("x-vercel-ip-country");
+  const latitude = req.headers.get("x-vercel-ip-latitude");
+  const longitude = req.headers.get("x-vercel-ip-longitude");
+  const place = [city, region, country].filter(Boolean).join(", ");
+  const coordinates = latitude && longitude ? ` (${latitude}, ${longitude})` : "";
+
+  return place ? `${decodeURIComponent(place)}${coordinates}` : "Not available";
 }
 
 export async function POST(req: NextRequest) {
@@ -27,6 +55,8 @@ export async function POST(req: NextRequest) {
   const location = body.location?.trim() || "Not provided";
   const phoneNumber = body.phoneNumber?.trim() || "Not provided";
   const requirements = body.requirements?.trim() || "Not provided";
+  const clientIp = getClientIp(req);
+  const ipLocation = getIpLocation(req);
 
   if (!resendApiKey || !enquiryFromEmail) {
     return NextResponse.json(
@@ -51,6 +81,10 @@ export async function POST(req: NextRequest) {
     "",
     "Requirements:",
     requirements,
+    "",
+    "Submission details:",
+    `IP Address: ${clientIp}`,
+    `IP Location: ${ipLocation}`,
   ].join("\n");
 
   const response = await fetch("https://api.resend.com/emails", {
