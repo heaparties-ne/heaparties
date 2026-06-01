@@ -453,11 +453,11 @@ export default function Home() {
 
             <div className="rounded-lg border border-slate-800 bg-slate-900 p-8">
               <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-slate-400">
-                Later finish
+                Extra hours
               </p>
               <p className="text-4xl font-bold text-white">£50</p>
               <p className="mt-3 text-lg font-light text-slate-300">
-                per extra hour after midnight
+                per hour outside 7pm - 12am
               </p>
             </div>
           </div>
