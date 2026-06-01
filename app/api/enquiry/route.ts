@@ -14,12 +14,19 @@ type EnquiryBody = {
 };
 
 function formatUkDate(dateValue: string) {
-  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateValue);
-  if (!match) return dateValue || "Not provided";
+  const ukDateMatch = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.exec(dateValue);
+  if (ukDateMatch) {
+    const [, day, month, year] = ukDateMatch;
+    return `${day.padStart(2, "0")}/${month.padStart(2, "0")}/${year}`;
+  }
 
-  const [, year, month, day] = match;
+  const isoDateMatch = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateValue);
+  if (isoDateMatch) {
+    const [, year, month, day] = isoDateMatch;
+    return `${day}/${month}/${year}`;
+  }
 
-  return `${day}/${month}/${year}`;
+  return dateValue || "Not provided";
 }
 
 function getClientIp(req: NextRequest) {

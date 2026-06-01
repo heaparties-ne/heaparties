@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 const initialForm = {
   contactName: "",
@@ -13,23 +13,12 @@ const initialForm = {
 };
 
 export default function EnquirePage() {
-  const dateInputRef = useRef<HTMLInputElement>(null);
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [message, setMessage] = useState("");
 
   const updateField = (field: keyof typeof form, value: string) => {
     setForm((current) => ({ ...current, [field]: value }));
-  };
-
-  const openDatePicker = () => {
-    const input = dateInputRef.current;
-    if (!input) return;
-
-    input.focus();
-    if ("showPicker" in input) {
-      input.showPicker();
-    }
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -115,36 +104,14 @@ export default function EnquirePage() {
 
               <label className="block text-slate-300">
                 <span className="text-sm uppercase tracking-[0.24em]">Date</span>
-                <div className="relative mt-3">
-                  <input
-                    ref={dateInputRef}
-                    type="date"
-                    value={form.date}
-                    onChange={(event) => updateField("date", event.target.value)}
-                    className="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-4 pr-16 text-white outline-none transition focus:border-violet-300"
-                  />
-                  <button
-                    type="button"
-                    onClick={openDatePicker}
-                    className="absolute inset-y-2 right-2 inline-flex w-12 items-center justify-center rounded-md border border-white/20 bg-white/10 text-white transition hover:bg-white hover:text-slate-900"
-                    aria-label="Show date picker"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      viewBox="0 0 24 24"
-                      className="h-5 w-5"
-                      fill="none"
-                    >
-                      <path
-                        d="M7 3v3M17 3v3M4.5 9.5h15M6.5 5h11A2.5 2.5 0 0 1 20 7.5v10A2.5 2.5 0 0 1 17.5 20h-11A2.5 2.5 0 0 1 4 17.5v-10A2.5 2.5 0 0 1 6.5 5Z"
-                        stroke="currentColor"
-                        strokeWidth="1.8"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </button>
-                </div>
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  placeholder="DD/MM/YYYY"
+                  value={form.date}
+                  onChange={(event) => updateField("date", event.target.value)}
+                  className="mt-3 w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-4 text-white outline-none transition placeholder:text-slate-500 focus:border-violet-300"
+                />
               </label>
 
               <label className="block text-slate-300">
