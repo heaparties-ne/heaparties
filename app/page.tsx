@@ -451,8 +451,8 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="rounded-lg border border-slate-800 bg-slate-900 p-8">
-              <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-slate-400">
+            <div className="rounded-lg border border-violet-500/40 bg-slate-900 p-8 shadow-[0_24px_60px_-40px_rgba(139,92,246,0.9)]">
+              <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-violet-200">
                 Extra hours
               </p>
               <p className="text-4xl font-bold text-white">£50</p>
@@ -491,7 +491,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <a
               href={mailtoHref}
-              className="inline-flex items-center justify-center bg-white text-slate-900 px-8 py-4 font-bold tracking-wider hover:bg-slate-200 transition"
+              className="inline-flex items-center justify-center border-2 border-white text-white px-8 py-4 font-bold tracking-wider hover:bg-white hover:text-slate-900 transition"
             >
               ENQUIRE NOW
             </a>
