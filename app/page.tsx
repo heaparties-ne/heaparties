@@ -12,7 +12,7 @@ const emailDomain = "heaparties-ne.co.uk";
 const email = `${emailLocal}@${emailDomain}`;
 const mailSubject = encodeURIComponent("Website Enquiry");
 const mailtoHref = `mailto:${email}?subject=${mailSubject}`;
-const mixcloudUrl = "https://www.mixcloud.com/BoroDJ69/";
+const mixcloudUrl = "https://www.mixcloud.com/HappilyEverAfter-Parties/";
 const mixcloudBrandColor = "#5000FF";
 
 function MixcloudIcon() {

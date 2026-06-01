@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const defaultSampleUrl = "https://www.mixcloud.com/BoroDJ69/";
+const defaultSampleUrl = "https://www.mixcloud.com/HappilyEverAfter-Parties/";
 
 const packages = [
   {
