@@ -451,7 +451,7 @@ export default function Home() {
               href="/packages"
               className="inline-flex items-center justify-center border-2 border-white text-white px-8 py-4 font-bold tracking-wider hover:bg-white hover:text-slate-900 transition"
             >
-              VIEW PACKAGES
+              LISTEN TO SAMPLE MIXES
             </Link>
           </div>
 
