@@ -11,7 +11,20 @@ const emailLocal = "enquiries";
 const emailDomain = "heaparties-ne.co.uk";
 const email = `${emailLocal}@${emailDomain}`;
 const mailSubject = encodeURIComponent("Website Enquiry");
-const mailtoHref = `mailto:${email}?subject=${mailSubject}`;
+const mailBody = encodeURIComponent(
+  [
+    "Contact Name: ",
+    "",
+    "Date: ",
+    "",
+    "Location: ",
+    "",
+    "Phone Number: ",
+    "",
+    "Requirements: ",
+  ].join("\n"),
+);
+const mailtoHref = `mailto:${email}?subject=${mailSubject}&body=${mailBody}`;
 const mixcloudUrl = "https://www.mixcloud.com/HappilyEverAfter-Parties/";
 const mixcloudBrandColor = "#5000FF";
 
