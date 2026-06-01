@@ -503,7 +503,7 @@ export default function Home() {
             </Link>
             <a
               href="#pricing"
-              className="inline-flex items-center justify-center border-2 border-violet-300 text-violet-100 px-8 py-4 font-bold tracking-wider hover:bg-violet-300 hover:text-slate-950 transition"
+              className="inline-flex items-center justify-center border-2 border-white text-white px-8 py-4 font-bold tracking-wider hover:bg-white hover:text-slate-900 transition"
             >
               VIEW PRICING
             </a>
