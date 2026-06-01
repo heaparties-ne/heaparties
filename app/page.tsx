@@ -319,13 +319,13 @@ export default function Home() {
                 Professional Musicians & DJs
               </h2>
               <p className="text-xl text-slate-300 font-light leading-relaxed mb-6">
-                Founded by musicians and live music specialists, we bring professional expertise and genuine passion to every event. With 25 years of DJ experience across the UK, we know how to keep your celebration moving all night.
+                Happily Ever After-Parties is an owner-led wedding DJ service built on genuine musical experience, careful planning and a proper love for a full dancefloor. With 25 years of DJ experience across the UK, I know how to read the room and keep your celebration moving all night.
               </p>
               <p className="text-lg text-slate-300 font-light leading-relaxed mb-6">
-                I hold both college and university qualifications in music and audio technology, ensuring every show is technically flawless and sonically rich.
+                I hold both college and university qualifications in music and audio technology, so every show is handled with the technical care, sound quality and attention to detail your event deserves.
               </p>
               <p className="text-lg text-slate-300 font-light leading-relaxed">
-                Happily Ever After-Parties NE LTD is fully insured with up to £5m public liability cover. If worst happens, you’re covered, and all equipment is PAT tested before every event.
+                Happily Ever After-Parties NE LTD is fully insured with up to £5m public liability cover, and all equipment is PAT tested before every event for added peace of mind.
               </p>
             </div>
 
