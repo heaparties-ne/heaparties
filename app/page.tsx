@@ -78,6 +78,7 @@ export default function Home() {
               <a href="#vibes" className="hover:text-white transition">Vibes</a>
               <a href="#gallery" className="hover:text-white transition">Gallery</a>
               <a href="#testimonials" className="hover:text-white transition">Testimonials</a>
+              <a href="#pricing" className="hover:text-white transition">Pricing</a>
               <a href="#contact" className="hover:text-white transition">Enquire</a>
             </div>
           </div>
@@ -420,6 +421,53 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Pricing Section */}
+      <section id="pricing" className="py-24 px-4 sm:px-6 lg:px-8 bg-slate-950">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-14">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+              Simple Evening Pricing
+            </h2>
+            <p className="text-slate-300 text-lg">
+              Clear starting point for wedding and event DJ bookings
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            <div className="rounded-lg border border-violet-500/40 bg-slate-900 p-8 shadow-[0_24px_60px_-40px_rgba(139,92,246,0.9)] md:col-span-2">
+              <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-violet-200">
+                Evening DJ package
+              </p>
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                  <p className="text-5xl font-bold text-white">£800</p>
+                  <p className="mt-3 text-xl font-light text-slate-300">
+                    7pm - 12am
+                  </p>
+                </div>
+                <p className="max-w-md text-left text-slate-300 leading-relaxed sm:text-right">
+                  Includes professional DJ service, premium sound, lighting and setup for a polished evening celebration.
+                </p>
+              </div>
+            </div>
+
+            <div className="rounded-lg border border-slate-800 bg-slate-900 p-8">
+              <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-slate-400">
+                Later finish
+              </p>
+              <p className="text-4xl font-bold text-white">£50</p>
+              <p className="mt-3 text-lg font-light text-slate-300">
+                per extra hour after midnight
+              </p>
+            </div>
+          </div>
+
+          <p className="mt-8 text-center text-sm text-slate-400">
+            Final quotes can vary by date, travel, venue access and any extra production requirements.
+          </p>
+        </div>
+      </section>
+
       {/* Contact/CTA Section */}
       <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8 bg-slate-900 text-white relative overflow-hidden">
         {/* Background image overlay */}
@@ -453,6 +501,12 @@ export default function Home() {
             >
               LISTEN TO SAMPLE MIXES
             </Link>
+            <a
+              href="#pricing"
+              className="inline-flex items-center justify-center border-2 border-violet-300 text-violet-100 px-8 py-4 font-bold tracking-wider hover:bg-violet-300 hover:text-slate-950 transition"
+            >
+              VIEW PRICING
+            </a>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center gap-4 mb-12">
