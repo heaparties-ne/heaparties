@@ -130,12 +130,12 @@ export default function Home() {
           <p className="text-lg md:text-xl font-light text-gray-100 mb-10 max-w-2xl mx-auto">
             Premium wedding DJ services for unforgettable celebrations
           </p>
-          <a
-            href={mailtoHref}
+          <Link
+            href="/enquire"
             className="inline-flex items-center justify-center bg-white text-slate-900 px-8 py-4 font-semibold tracking-wider hover:bg-slate-200 transition"
           >
             ENQUIRE NOW
-          </a>
+          </Link>
           <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-gray-200">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-4 py-2">
               25 years DJ experience
@@ -502,12 +502,12 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <a
-              href={mailtoHref}
+            <Link
+              href="/enquire"
               className="inline-flex items-center justify-center border-2 border-white text-white px-8 py-4 font-bold tracking-wider hover:bg-white hover:text-slate-900 transition"
             >
               ENQUIRE NOW
-            </a>
+            </Link>
             <Link
               href="/packages"
               className="inline-flex items-center justify-center border-2 border-white text-white px-8 py-4 font-bold tracking-wider hover:bg-white hover:text-slate-900 transition"

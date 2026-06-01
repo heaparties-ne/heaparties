@@ -3,7 +3,7 @@ import type { NextRequest } from "next/server";
 
 const PUBLIC_FILE = /\.(.*)$/;
 const LOGIN_PATH = "/login";
-const ALLOWED_PATHS = ["/api/login", "/api/login/", "/favicon.ico"];
+const ALLOWED_PATHS = ["/api/login", "/api/login/", "/api/enquiry", "/api/enquiry/", "/favicon.ico"];
 const COOKIE_NAME = "heap_auth";
 const PASSWORD = process.env.SITE_PASSWORD || "heap2026";
 
@@ -17,6 +17,7 @@ export function proxy(req: NextRequest) {
     pathname.startsWith("/images") ||
     PUBLIC_FILE.test(pathname) ||
     pathname.startsWith("/api/login") ||
+    pathname.startsWith("/api/enquiry") ||
     ALLOWED_PATHS.includes(pathname) ||
     pathname === LOGIN_PATH
   ) {

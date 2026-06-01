@@ -130,7 +130,7 @@ export default function PackagesPage() {
             Tell us the feel you want and we&apos;ll shape the package around the room, the guests and the moments that matter.
           </p>
           <Link
-            href="/#contact"
+            href="/enquire"
             className="inline-flex items-center justify-center bg-white px-8 py-4 font-bold tracking-wider text-slate-900 transition hover:bg-slate-200"
           >
             ENQUIRE NOW
