@@ -13,10 +13,17 @@ type EnquiryBody = {
   requirements?: string;
 };
 
+function formatUkDate(dateValue: string) {
+  const [year, month, day] = dateValue.split("-");
+  if (!year || !month || !day) return dateValue || "Not provided";
+
+  return `${day}/${month}/${year}`;
+}
+
 export async function POST(req: NextRequest) {
   const body = (await req.json()) as EnquiryBody;
   const contactName = body.contactName?.trim() || "Not provided";
-  const date = body.date?.trim() || "Not provided";
+  const date = formatUkDate(body.date?.trim() || "");
   const location = body.location?.trim() || "Not provided";
   const phoneNumber = body.phoneNumber?.trim() || "Not provided";
   const requirements = body.requirements?.trim() || "Not provided";
@@ -32,7 +39,7 @@ export async function POST(req: NextRequest) {
   }
 
   const emailText = [
-    "New website enquiry",
+    "Website Enquiry",
     "",
     `Contact Name: ${contactName}`,
     "",
@@ -55,7 +62,7 @@ export async function POST(req: NextRequest) {
     body: JSON.stringify({
       from: enquiryFromEmail,
       to: [enquiryToEmail],
-      subject: `Website Enquiry - ${contactName}`,
+      subject: "Website Enquiry",
       text: emailText,
     }),
   });
