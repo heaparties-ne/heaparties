@@ -12,6 +12,17 @@ const initialForm = {
   requirements: "",
 };
 
+function formatDateInput(value: string) {
+  const digits = value.replace(/\D/g, "").slice(0, 8);
+  const day = digits.slice(0, 2);
+  const month = digits.slice(2, 4);
+  const year = digits.slice(4, 8);
+
+  if (digits.length <= 2) return day;
+  if (digits.length <= 4) return `${day}/${month}`;
+  return `${day}/${month}/${year}`;
+}
+
 export default function EnquirePage() {
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -109,7 +120,7 @@ export default function EnquirePage() {
                   inputMode="numeric"
                   placeholder="DD/MM/YYYY"
                   value={form.date}
-                  onChange={(event) => updateField("date", event.target.value)}
+                  onChange={(event) => updateField("date", formatDateInput(event.target.value))}
                   className="mt-3 w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-4 text-white outline-none transition placeholder:text-slate-500 focus:border-violet-300"
                 />
               </label>
