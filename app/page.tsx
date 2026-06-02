@@ -66,8 +66,8 @@ const testimonials = [
   },
   {
     quote:
-      "As two grooms, we wanted the night to feel personal and relaxed, and he absolutely nailed it from our first dance right through to the last track.",
-    names: "Alex & Jordan",
+      "We wanted the night to feel personal and relaxed, and he absolutely nailed it from our first dance right through to the last track.",
+    names: "Daniel & Marcus",
   },
   {
     quote:
@@ -85,6 +85,19 @@ const testimonials = [
     names: "Lauren & Chris",
   },
 ];
+const testimonialGroups = Array.from(
+  { length: Math.ceil(testimonials.length / 3) },
+  (_, index) => {
+    const start = index * 3;
+    const group = testimonials.slice(start, start + 3);
+
+    while (group.length < 3) {
+      group.push(testimonials[group.length]);
+    }
+
+    return group;
+  },
+);
 
 function MixcloudIcon() {
   return (
@@ -442,23 +455,36 @@ export default function Home() {
             <p className="text-slate-300 text-lg">Real stories from real celebrations</p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {testimonials.map((testimonial) => (
-              <div
-                key={testimonial.names}
-                className="bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-sm"
-              >
-                <div className="flex gap-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-amber-400">★</span>
+          <div className="reviews-slider relative overflow-hidden">
+            <div
+              className="reviews-track flex"
+              style={{ width: `${testimonialGroups.length * 100}%` }}
+            >
+              {testimonialGroups.map((group, groupIndex) => (
+                <div
+                  key={`group-${groupIndex}`}
+                  className="reviews-group flex gap-8"
+                  style={{ width: `${100 / testimonialGroups.length}%` }}
+                >
+                  {group.map((testimonial, testimonialIndex) => (
+                    <div
+                      key={`${testimonial.names}-${groupIndex}-${testimonialIndex}`}
+                      className="review-card bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-sm"
+                    >
+                      <div className="flex gap-1 mb-4">
+                        {[...Array(5)].map((_, i) => (
+                          <span key={i} className="text-amber-400">★</span>
+                        ))}
+                      </div>
+                      <p className="text-slate-300 font-light mb-6 italic leading-relaxed">
+                        &ldquo;{testimonial.quote}&rdquo;
+                      </p>
+                      <p className="font-semibold text-white">{testimonial.names}</p>
+                    </div>
                   ))}
                 </div>
-                <p className="text-slate-300 font-light mb-6 italic leading-relaxed">
-                  &ldquo;{testimonial.quote}&rdquo;
-                </p>
-                <p className="font-semibold text-white">{testimonial.names}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
