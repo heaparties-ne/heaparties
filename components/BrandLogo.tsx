@@ -10,15 +10,13 @@ type BrandLogoProps = {
 
 function LogoMark({ className = "" }: { className?: string }) {
   return (
-    <div
-      className={`inline-flex items-center justify-center rounded-2xl bg-white/94 p-2 shadow-[0_20px_40px_-24px_rgba(255,255,255,0.8)] ring-1 ring-white/15 ${className}`}
-    >
+    <div className={`inline-flex items-center justify-center ${className}`}>
       <Image
         src="/logo.png"
         alt="Happily Ever After-Parties NE"
-        width={72}
-        height={72}
-        className="h-14 w-14 object-contain md:h-[4.5rem] md:w-[4.5rem]"
+        width={96}
+        height={96}
+        className="h-16 w-16 object-contain invert brightness-200 drop-shadow-[0_10px_30px_rgba(255,255,255,0.18)] md:h-20 md:w-20"
         priority
       />
     </div>
