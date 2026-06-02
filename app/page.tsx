@@ -28,6 +28,63 @@ const mailBody = encodeURIComponent(
 const mailtoHref = `mailto:${email}?subject=${mailSubject}&body=${mailBody}`;
 const mixcloudUrl = "https://www.mixcloud.com/HappilyEverAfter-Parties/";
 const mixcloudBrandColor = "#5000FF";
+const testimonials = [
+  {
+    quote:
+      "Absolutely incredible. They brought the energy and kept our guests dancing all night.",
+    names: "Sarah & Michael",
+  },
+  {
+    quote:
+      "From start to finish, they handled everything perfectly. The lighting transformed our venue.",
+    names: "Jessica & David",
+  },
+  {
+    quote:
+      "Professional, reliable, and genuinely cared about making our day special.",
+    names: "Emma & James",
+  },
+  {
+    quote:
+      "Fantastic communication and a brilliant set — everyone danced until the end.",
+    names: "Olivia & Mark",
+  },
+  {
+    quote:
+      "Exceeded expectations — the vibe was perfect and the dancefloor was full.",
+    names: "Hannah & Luke",
+  },
+  {
+    quote:
+      "Amazing service and atmosphere — would recommend to anyone.",
+    names: "Mia & Tom",
+  },
+  {
+    quote:
+      "He read the room so well and timed every switch perfectly. The whole evening felt effortless for us.",
+    names: "Rachel & Ben",
+  },
+  {
+    quote:
+      "As two grooms, we wanted the night to feel personal and relaxed, and he absolutely nailed it from our first dance right through to the last track.",
+    names: "Alex & Jordan",
+  },
+  {
+    quote:
+      "The setup looked class, the sound was spot on, and our guests are still talking about the last hour on the dancefloor.",
+    names: "Chinelo & Adam",
+  },
+  {
+    quote:
+      "We gave a very mixed playlist and somehow every age group felt included. It never felt cheesy, just really well judged.",
+    names: "Sophie & Ryan",
+  },
+  {
+    quote:
+      "Brilliant from the planning stage onwards. Calm, organised and exactly the kind of presence you want running the evening.",
+    names: "Lauren & Chris",
+  },
+];
 
 function MixcloudIcon() {
   return (
@@ -385,50 +442,23 @@ export default function Home() {
             <p className="text-slate-300 text-lg">Real stories from real celebrations</p>
           </div>
 
-          <div className="reviews-slider relative overflow-hidden">
-            <div className="reviews-track flex w-[200%]">
-              {/* Group 1 */}
-              <div className="reviews-group flex gap-8 w-1/2">
-                <div className="review-card bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-sm">
-                  <div className="flex gap-1 mb-4">{[...Array(5)].map((_, i) => (<span key={i} className="text-amber-400">★</span>))}</div>
-                  <p className="text-slate-300 font-light mb-6 italic leading-relaxed">&ldquo;Absolutely incredible. They brought the energy and kept our guests dancing all night.&rdquo;</p>
-                  <p className="font-semibold text-white">Sarah & Michael</p>
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {testimonials.map((testimonial) => (
+              <div
+                key={testimonial.names}
+                className="bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-sm"
+              >
+                <div className="flex gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} className="text-amber-400">★</span>
+                  ))}
                 </div>
-
-                <div className="review-card bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-sm">
-                  <div className="flex gap-1 mb-4">{[...Array(5)].map((_, i) => (<span key={i} className="text-amber-400">★</span>))}</div>
-                  <p className="text-slate-300 font-light mb-6 italic leading-relaxed">&ldquo;From start to finish, they handled everything perfectly. The lighting transformed our venue.&rdquo;</p>
-                  <p className="font-semibold text-white">Jessica & David</p>
-                </div>
-
-                <div className="review-card bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-sm">
-                  <div className="flex gap-1 mb-4">{[...Array(5)].map((_, i) => (<span key={i} className="text-amber-400">★</span>))}</div>
-                  <p className="text-slate-300 font-light mb-6 italic leading-relaxed">&ldquo;Professional, reliable, and genuinely cared about making our day special.&rdquo;</p>
-                  <p className="font-semibold text-white">Emma & James</p>
-                </div>
+                <p className="text-slate-300 font-light mb-6 italic leading-relaxed">
+                  &ldquo;{testimonial.quote}&rdquo;
+                </p>
+                <p className="font-semibold text-white">{testimonial.names}</p>
               </div>
-
-              {/* Group 2 */}
-              <div className="reviews-group flex gap-8 w-1/2">
-                <div className="review-card bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-sm">
-                  <div className="flex gap-1 mb-4">{[...Array(5)].map((_, i) => (<span key={i} className="text-amber-400">★</span>))}</div>
-                  <p className="text-slate-300 font-light mb-6 italic leading-relaxed">&ldquo;Fantastic communication and a brilliant set — everyone danced until the end.&rdquo;</p>
-                  <p className="font-semibold text-white">Olivia & Mark</p>
-                </div>
-
-                <div className="review-card bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-sm">
-                  <div className="flex gap-1 mb-4">{[...Array(5)].map((_, i) => (<span key={i} className="text-amber-400">★</span>))}</div>
-                  <p className="text-slate-300 font-light mb-6 italic leading-relaxed">&ldquo;Exceeded expectations — the vibe was perfect and the dancefloor was full.&rdquo;</p>
-                  <p className="font-semibold text-white">Hannah & Luke</p>
-                </div>
-
-                <div className="review-card bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-sm">
-                  <div className="flex gap-1 mb-4">{[...Array(5)].map((_, i) => (<span key={i} className="text-amber-400">★</span>))}</div>
-                  <p className="text-slate-300 font-light mb-6 italic leading-relaxed">&ldquo;Amazing service and atmosphere — would recommend to anyone.&rdquo;</p>
-                  <p className="font-semibold text-white">Mia & Tom</p>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
