@@ -14,9 +14,9 @@ function LogoMark({ className = "" }: { className?: string }) {
       <Image
         src="/logo.png"
         alt="Happily Ever After-Parties NE"
-        width={96}
-        height={96}
-        className="h-16 w-16 object-contain invert brightness-200 drop-shadow-[0_10px_30px_rgba(255,255,255,0.18)] md:h-20 md:w-20"
+        width={144}
+        height={144}
+        className="h-24 w-24 object-contain invert brightness-200 drop-shadow-[0_10px_30px_rgba(255,255,255,0.18)] md:h-28 md:w-28"
         priority
       />
     </div>
