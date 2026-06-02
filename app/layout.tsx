@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Elite Wedding DJ - Premium Luxury Events",
-  description: "Cinematic wedding DJ services for unforgettable luxury celebrations. World-class music and production.",
+  title: "North East Weddings & Events, Expertly Soundtracked",
+  description: "Owner-led wedding and event DJ services across the North East, crafted around your crowd, your venue and your big moments.",
   icons: {
     icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
     apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],

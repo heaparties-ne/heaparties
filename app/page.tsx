@@ -127,7 +127,7 @@ export default function Home() {
             <span className="text-violet-300">YOUR VIBE</span>
           </h1>
           <p className="text-lg md:text-xl font-light text-gray-100 mb-10 max-w-2xl mx-auto">
-            Premium wedding DJ services for unforgettable celebrations
+            North East weddings & events, expertly soundtracked
           </p>
           <Link
             href="/enquire"
@@ -237,7 +237,7 @@ export default function Home() {
             {/* Gallery 1 - Large */}
             <div className="md:col-span-2 md:row-span-2 relative overflow-hidden rounded-3xl h-80 md:h-[560px] group">
               <Image
-                src="/images/images/image5.jpeg"
+                src="/images/images/image11.jpeg"
                 alt="Featured Event"
                 fill
                 sizes="100vw"
@@ -298,7 +298,7 @@ export default function Home() {
             {/* Gallery 6 */}
             <div className="relative overflow-hidden rounded-3xl h-72 group">
               <Image
-                src="/images/images/image11.jpeg"
+                src="/images/images/image5.jpeg"
                 alt="Gallery Event 6"
                 fill
                 sizes="100vw"
