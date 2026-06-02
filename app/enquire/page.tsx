@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import BrandLogo from "../../components/BrandLogo";
 
 const initialForm = {
   contactName: "",
@@ -57,9 +58,7 @@ export default function EnquirePage() {
     <main className="min-h-screen overflow-hidden bg-slate-950 text-slate-100">
       <nav className="fixed top-0 z-50 w-full border-b border-slate-800 bg-slate-950/95 backdrop-blur-sm">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-          <Link href="/" className="text-xl font-bold tracking-tight text-white md:text-2xl">
-            HAPPILY EVER AFTER-PARTIES NE LTD
-          </Link>
+          <BrandLogo />
           <Link href="/" className="text-sm font-medium uppercase tracking-[0.24em] text-slate-300 transition hover:text-white">
             Back
           </Link>

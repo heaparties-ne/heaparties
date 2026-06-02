@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import BrandLogo from "../../components/BrandLogo";
 
 const defaultSampleUrl = "https://www.mixcloud.com/HappilyEverAfter-Parties/";
 
@@ -43,9 +44,7 @@ export default function PackagesPage() {
     <main className="min-h-screen overflow-hidden bg-slate-950 text-slate-100">
       <nav className="fixed top-0 z-50 w-full border-b border-slate-800 bg-slate-950/95 backdrop-blur-sm">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-          <Link href="/" className="text-xl font-bold tracking-tight text-white md:text-2xl">
-            HAPPILY EVER AFTER-PARTIES NE LTD
-          </Link>
+          <BrandLogo />
           <div className="hidden gap-8 text-sm font-medium text-slate-300 md:flex">
             <Link href="/#vibes" className="transition hover:text-white">Vibes</Link>
             <Link href="/#gallery" className="transition hover:text-white">Gallery</Link>

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import BrandLogo from "../components/BrandLogo";
 
 // Assemble contact details client-side to avoid raw scraping in HTML
 const phoneParts = ["07356", "211274"];
@@ -84,9 +85,7 @@ export default function Home() {
       <nav className="fixed top-0 w-full z-50 bg-slate-950/95 backdrop-blur-sm border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
-            <div className="text-2xl font-bold tracking-tight text-white">
-              HAPPILY EVER AFTER-PARTIES NE LTD
-            </div>
+            <BrandLogo />
             <div className="hidden md:flex gap-8 text-slate-300 text-sm font-medium">
               <a href="#vibes" className="hover:text-white transition">Vibes</a>
               <a href="#gallery" className="hover:text-white transition">Gallery</a>
@@ -584,6 +583,9 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-black py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto text-center text-gray-500 text-sm space-y-2">
+          <div className="flex justify-center pb-4">
+            <BrandLogo showName={false} markClassName="p-2" />
+          </div>
           <p>© 2026 Happily Ever After-Parties NE LTD. All rights reserved. | Fully insured & PAT tested for UK events</p>
           <p>Ltd. Company No. 17153234</p>
         </div>

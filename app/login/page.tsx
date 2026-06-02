@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import BrandLogo from "../../components/BrandLogo";
 
 const invalidLoginMessage = "Incorrect username or password. Try again.";
 
@@ -57,6 +58,9 @@ function LoginForm() {
 
       <div className="relative z-10 w-full max-w-xl rounded-[2rem] border border-white/15 bg-slate-950/80 p-10 shadow-[0_30px_80px_-30px_rgba(139,92,246,0.9)] ring-1 ring-violet-500/20 backdrop-blur-xl">
         <div className="mb-10 text-center">
+          <div className="mb-4 flex justify-center">
+            <BrandLogo showName={false} markClassName="p-2" />
+          </div>
           <p className="text-sm uppercase tracking-[0.35em] text-violet-200 mb-4">Private preview</p>
           <h1 className="text-4xl font-bold tracking-tight text-white">
             HAPPILY EVER<br />
