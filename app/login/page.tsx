@@ -12,6 +12,7 @@ function LoginForm() {
   const [password, setPassword] = useState("");
   const router = useRouter();
   const searchParams = useSearchParams();
+  const nextPath = searchParams.get("next") || "/";
   const [error, setError] = useState(() =>
     searchParams.get("error") === "invalid" ? invalidLoginMessage : "",
   );
@@ -22,19 +23,26 @@ function LoginForm() {
     setLoading(true);
     setError("");
 
-    const response = await fetch("/api/login", {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
-    });
+    try {
+      const response = await fetch("/api/login", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password, next: nextPath }),
+      });
 
-    setLoading(false);
+      if (!response.ok) {
+        setError(invalidLoginMessage);
+        return;
+      }
 
-    if (response.ok) {
-      router.push("/");
-    } else {
+      const data = (await response.json()) as { redirectTo?: string };
+      router.replace(data.redirectTo || nextPath || "/");
+      router.refresh();
+    } catch {
       setError(invalidLoginMessage);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -82,7 +90,7 @@ function LoginForm() {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6" autoComplete="off" method="post" action="/api/login/" encType="application/x-www-form-urlencoded" target="_self">
+        <form onSubmit={handleSubmit} className="space-y-6" autoComplete="off">
           <label className="block text-slate-300">
             <span className="text-sm uppercase tracking-[0.24em]">Username</span>
             <input
@@ -90,9 +98,12 @@ function LoginForm() {
               type="text"
               value={username}
               onChange={(event) => setUsername(event.target.value)}
-              autoComplete="off"
+              autoComplete="username"
+              autoCapitalize="none"
+              spellCheck={false}
               className="mt-3 w-full rounded-3xl border border-slate-800 bg-slate-950 px-5 py-4 text-white outline-none transition focus:border-violet-400"
               placeholder="Chris Waite"
+              autoFocus
             />
           </label>
           <label className="block text-slate-300">
@@ -102,7 +113,7 @@ function LoginForm() {
               type="password"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
-              autoComplete="new-password"
+              autoComplete="current-password"
               className="mt-3 w-full rounded-3xl border border-slate-800 bg-slate-950 px-5 py-4 text-white outline-none transition focus:border-violet-400"
               placeholder="Enter password"
             />

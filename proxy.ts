@@ -29,7 +29,11 @@ export function proxy(req: NextRequest) {
     return NextResponse.next();
   }
 
-  return NextResponse.redirect(new URL(LOGIN_PATH, req.url));
+  const loginUrl = new URL(LOGIN_PATH, req.url);
+  const nextPath = `${pathname}${req.nextUrl.search}`;
+  loginUrl.searchParams.set("next", nextPath);
+
+  return NextResponse.redirect(loginUrl);
 }
 
 export const config = {
