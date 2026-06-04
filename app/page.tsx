@@ -456,15 +456,11 @@ export default function Home() {
           </div>
 
           <div className="reviews-slider relative overflow-hidden">
-            <div
-              className="reviews-track flex"
-              style={{ width: `${testimonialGroups.length * 100}%` }}
-            >
+            <div className="reviews-track">
               {testimonialGroups.map((group, groupIndex) => (
                 <div
                   key={`group-${groupIndex}`}
-                  className="reviews-group flex gap-8"
-                  style={{ width: `${100 / testimonialGroups.length}%` }}
+                  className="reviews-group"
                 >
                   {group.map((testimonial, testimonialIndex) => (
                     <div

@@ -99,9 +99,29 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 /* Reviews slider */
 .reviews-slider { position: relative; }
-.reviews-track { display: flex; gap: 2rem; }
-.reviews-group { display: flex; gap: 2rem; }
-.review-card { flex: 0 0 calc(33.333% - 1.333rem); }
+.reviews-track {
+  display: flex;
+  gap: 0;
+  width: 100%;
+  will-change: transform;
+}
+.reviews-group {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+  flex: 0 0 100%;
+  min-width: 100%;
+}
+.review-card {
+  min-width: 0;
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  .reviews-group {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
 
 /* slide through four groups of three cards */
 @keyframes slideReviews {
