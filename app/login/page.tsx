@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Suspense, useState } from "react";
+import { Suspense, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import BrandLogo from "../../components/BrandLogo";
 
@@ -10,6 +10,7 @@ const invalidLoginMessage = "Incorrect username or password. Try again.";
 function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const formRef = useRef<HTMLFormElement>(null);
   const router = useRouter();
   const searchParams = useSearchParams();
   const nextPath = searchParams.get("next") || "/";
@@ -90,7 +91,7 @@ function LoginForm() {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6" autoComplete="off">
+        <form ref={formRef} onSubmit={handleSubmit} className="space-y-6" autoComplete="off">
           <label className="block text-slate-300">
             <span className="text-sm uppercase tracking-[0.24em]">Username</span>
             <input
@@ -113,7 +114,14 @@ function LoginForm() {
               type="password"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") {
+                  event.preventDefault();
+                  formRef.current?.requestSubmit();
+                }
+              }}
               autoComplete="current-password"
+              enterKeyHint="go"
               className="mt-3 w-full rounded-3xl border border-slate-800 bg-slate-950 px-5 py-4 text-white outline-none transition focus:border-violet-400"
               placeholder="Enter password"
             />
