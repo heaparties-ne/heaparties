@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { Suspense, useRef, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import BrandLogo from "../../components/BrandLogo";
 
 const invalidLoginMessage = "Incorrect username or password. Try again.";
@@ -11,7 +11,6 @@ function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
-  const router = useRouter();
   const searchParams = useSearchParams();
   const nextPath = searchParams.get("next") || "/";
   const [error, setError] = useState(() =>
@@ -38,8 +37,7 @@ function LoginForm() {
       }
 
       const data = (await response.json()) as { redirectTo?: string };
-      router.replace(data.redirectTo || nextPath || "/");
-      router.refresh();
+      window.location.replace(data.redirectTo || nextPath || "/");
     } catch {
       setError(invalidLoginMessage);
     } finally {
@@ -48,7 +46,7 @@ function LoginForm() {
   };
 
   return (
-    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-950 px-4 py-12 text-slate-100">
+    <main className="relative flex min-h-screen items-center overflow-hidden bg-slate-950 px-4 py-10 text-slate-100 sm:px-6 lg:px-8">
       <div className="absolute inset-0">
         <Image
           src="/images/images/image8.jpeg"
@@ -58,27 +56,30 @@ function LoginForm() {
           sizes="100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-black/65" />
+        <div className="absolute inset-0 bg-black/70" />
         <div className="absolute inset-0 pointer-events-none">
           <div className="light light-1 absolute inset-0" />
           <div className="light light-2 absolute inset-0" />
         </div>
       </div>
 
-      <div className="relative z-10 w-full max-w-xl rounded-[2rem] border border-white/15 bg-slate-950/80 p-10 shadow-[0_30px_80px_-30px_rgba(139,92,246,0.9)] ring-1 ring-violet-500/20 backdrop-blur-xl">
-        <div className="mb-10 text-center">
-          <div className="mb-4 flex justify-center">
-            <BrandLogo showName={false} markClassName="p-2" />
+      <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
+        <section className="text-center lg:text-left">
+          <div className="mb-6 flex justify-center lg:justify-start">
+            <BrandLogo showName={false} />
           </div>
-          <p className="text-sm uppercase tracking-[0.35em] text-violet-200 mb-4">Private preview</p>
-          <h1 className="text-4xl font-bold tracking-tight text-white">
-            HAPPILY EVER<br />
-            <span className="text-violet-300">AFTER-PARTIES</span>
-          </h1>
-          <p className="mt-4 text-slate-300 leading-relaxed">
-            Enter your password to view the site. This page protects the preview while the build is online.
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-violet-200">
+            Happily Ever After-Parties NE
           </p>
-          <div className="mt-6 flex flex-col items-center justify-center gap-3 text-xs text-gray-200 sm:flex-row">
+          <h1 className="text-5xl font-bold leading-tight tracking-tight text-white sm:text-6xl">
+            Something special<br />
+            <span className="text-violet-300">is coming soon.</span>
+          </h1>
+          <p className="mx-auto mt-6 max-w-2xl text-lg font-light leading-relaxed text-slate-200 lg:mx-0">
+            A fresh wedding and event DJ experience for the North East, built around brilliant music,
+            packed dancefloors and celebrations that feel completely yours.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3 text-xs text-gray-200 lg:justify-start">
             <span className="inline-flex items-center rounded-full border border-white/20 bg-black/35 px-4 py-2">
               25 years DJ experience
             </span>
@@ -89,54 +90,62 @@ function LoginForm() {
               £5m public liability
             </span>
           </div>
-        </div>
+        </section>
 
-        <form ref={formRef} onSubmit={handleSubmit} className="space-y-6" autoComplete="off">
-          <label className="block text-slate-300">
-            <span className="text-sm uppercase tracking-[0.24em]">Username</span>
-            <input
-              name="loginUser"
-              type="text"
-              value={username}
-              onChange={(event) => setUsername(event.target.value)}
-              autoComplete="username"
-              autoCapitalize="none"
-              spellCheck={false}
-              className="mt-3 w-full rounded-3xl border border-slate-800 bg-slate-950 px-5 py-4 text-white outline-none transition focus:border-violet-400"
-              placeholder="Chris Waite"
-              autoFocus
-            />
-          </label>
-          <label className="block text-slate-300">
-            <span className="text-sm uppercase tracking-[0.24em]">Password</span>
-            <input
-              name="loginPass"
-              type="password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              onKeyDown={(event) => {
-                if (event.key === "Enter") {
-                  event.preventDefault();
-                  formRef.current?.requestSubmit();
-                }
-              }}
-              autoComplete="current-password"
-              enterKeyHint="go"
-              className="mt-3 w-full rounded-3xl border border-slate-800 bg-slate-950 px-5 py-4 text-white outline-none transition focus:border-violet-400"
-              placeholder="Enter password"
-            />
-          </label>
+        <aside className="mx-auto w-full max-w-md rounded-lg border border-white/10 bg-slate-950/75 p-6 shadow-[0_24px_70px_-35px_rgba(139,92,246,0.7)] backdrop-blur-xl sm:p-8">
+          <div className="mb-6">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
+              Preview access
+            </p>
+            <h2 className="text-xl font-semibold text-white">Already have the details?</h2>
+          </div>
 
-          {error ? <p className="text-sm text-rose-400">{error}</p> : null}
+          <form ref={formRef} onSubmit={handleSubmit} className="space-y-4" autoComplete="off">
+            <label className="block text-slate-300">
+              <span className="sr-only">Username</span>
+              <input
+                name="loginUser"
+                type="text"
+                value={username}
+                onChange={(event) => setUsername(event.target.value)}
+                autoComplete="username"
+                autoCapitalize="none"
+                spellCheck={false}
+                className="w-full rounded-lg border border-slate-700 bg-slate-950/90 px-4 py-3 text-white outline-none transition placeholder:text-slate-500 focus:border-violet-400"
+                placeholder="Username"
+              />
+            </label>
+            <label className="block text-slate-300">
+              <span className="sr-only">Password</span>
+              <input
+                name="loginPass"
+                type="password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    event.preventDefault();
+                    formRef.current?.requestSubmit();
+                  }
+                }}
+                autoComplete="current-password"
+                enterKeyHint="go"
+                className="w-full rounded-lg border border-slate-700 bg-slate-950/90 px-4 py-3 text-white outline-none transition placeholder:text-slate-500 focus:border-violet-400"
+                placeholder="Password"
+              />
+            </label>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full rounded-3xl bg-white px-6 py-4 text-sm font-semibold uppercase tracking-[0.24em] text-slate-900 transition hover:bg-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
-          >
-            {loading ? "Checking..." : "Unlock Preview"}
-          </button>
-        </form>
+            {error ? <p className="text-sm text-rose-400">{error}</p> : null}
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full rounded-lg border border-white/20 bg-white/10 px-5 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-white transition hover:bg-white hover:text-slate-950 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {loading ? "Checking..." : "View Preview"}
+            </button>
+          </form>
+        </aside>
       </div>
     </main>
   );
