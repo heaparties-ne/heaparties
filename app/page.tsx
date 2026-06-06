@@ -156,7 +156,7 @@ export default function Home() {
         <div className="site-nav-inner max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <BrandLogo />
-            <div className="hidden md:flex gap-8 text-slate-300 text-sm font-medium">
+            <div className="site-nav-links hidden md:flex gap-8 text-slate-300 text-sm font-medium">
               <a href="#vibes" className="hover:text-white transition">Vibes</a>
               <a href="#gallery" className="hover:text-white transition">Gallery</a>
               <a href="#testimonials" className="hover:text-white transition">Testimonials</a>

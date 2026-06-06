@@ -111,6 +111,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   gap: 2rem;
   flex: 0 0 100%;
   min-width: 100%;
+  padding: 0 1rem;
+  box-sizing: border-box;
 }
 .review-card {
   min-width: 0;
@@ -127,34 +129,49 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 @keyframes slideReviews {
   0% { transform: translateX(0%); }
   21% { transform: translateX(0%); }
-  25% { transform: translateX(-25%); }
-  46% { transform: translateX(-25%); }
-  50% { transform: translateX(-50%); }
-  71% { transform: translateX(-50%); }
-  75% { transform: translateX(-75%); }
-  96% { transform: translateX(-75%); }
+  25% { transform: translateX(-100%); }
+  46% { transform: translateX(-100%); }
+  50% { transform: translateX(-200%); }
+  71% { transform: translateX(-200%); }
+  75% { transform: translateX(-300%); }
+  96% { transform: translateX(-300%); }
   100% { transform: translateX(0%); }
 }
 .reviews-track { animation: slideReviews 28s linear infinite; }
 
 @media (max-height: 500px) and (orientation: landscape) {
   .site-nav .site-nav-inner {
+    max-width: none;
+    padding-right: 1.25rem;
+    padding-left: 1.25rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
   }
 
   .site-nav .brand-logo {
-    gap: 0.75rem;
+    min-width: 0;
+    gap: 0.5rem;
   }
 
   .site-nav .brand-logo-mark {
-    width: 3rem;
-    height: 3rem;
+    width: 2.5rem;
+    height: 2.5rem;
   }
 
   .site-nav .brand-logo-name {
-    font-size: 1.375rem;
-    line-height: 1.15;
+    white-space: nowrap;
+    font-size: clamp(0.75rem, 1.65vw, 1rem);
+    line-height: 1;
+  }
+
+  .site-nav .site-nav-inner > div {
+    gap: 1rem;
+  }
+
+  .site-nav .site-nav-links {
+    flex-shrink: 0;
+    gap: clamp(1rem, 2.5vw, 2rem);
+    font-size: clamp(0.75rem, 1.45vw, 0.875rem);
   }
 
   .site-hero {
