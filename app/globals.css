@@ -139,6 +139,66 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 .reviews-track { animation: slideReviews 28s linear infinite; }
 
+@media (max-width: 767px) and (orientation: portrait) {
+  .site-nav .site-nav-inner {
+    padding: 0.625rem 0.875rem;
+  }
+
+  .site-nav .brand-logo {
+    min-width: 0;
+    gap: 0.5rem;
+  }
+
+  .site-nav .brand-logo-mark {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .site-nav .brand-logo-name {
+    white-space: nowrap;
+    font-size: clamp(0.675rem, 3vw, 0.8rem);
+    line-height: 1;
+  }
+
+  .site-hero {
+    min-height: 100svh;
+    height: auto;
+    padding-top: 4.25rem;
+  }
+
+  .site-hero-content {
+    padding-right: 1.25rem;
+    padding-left: 1.25rem;
+  }
+
+  .site-hero-content h1 {
+    margin-bottom: 1rem;
+    font-size: clamp(2.75rem, 13vw, 3.5rem);
+    line-height: 0.98;
+  }
+
+  .site-hero-content p {
+    max-width: 22rem;
+    margin-bottom: 1.75rem;
+    font-size: 1rem;
+    line-height: 1.45;
+  }
+
+  .site-hero-content > a {
+    padding: 0.875rem 1.75rem;
+  }
+
+  .site-hero-content > div:last-child {
+    margin-top: 1rem;
+    gap: 0.625rem;
+  }
+
+  .site-hero-content > div:last-child span {
+    padding: 0.5rem 0.875rem;
+    font-size: 0.75rem;
+  }
+}
+
 @media (max-height: 500px) and (orientation: landscape) {
   .site-nav .site-nav-inner {
     max-width: none;
