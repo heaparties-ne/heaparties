@@ -15,8 +15,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "North East Weddings & Events, Expertly Soundtracked",
+  metadataBase: new URL("https://www.heaparties-ne.co.uk"),
+  title: {
+    default: "North East Weddings & Events, Expertly Soundtracked",
+    template: "%s | Happily Ever After-Parties NE",
+  },
   description: "Owner-led wedding and event DJ services across the North East, crafted around your crowd, your venue and your big moments.",
+  openGraph: {
+    title: "North East Weddings & Events, Expertly Soundtracked",
+    description: "Owner-led wedding and event DJ services across the North East, crafted around your crowd, your venue and your big moments.",
+    url: "https://www.heaparties-ne.co.uk",
+    siteName: "Happily Ever After-Parties NE",
+    images: ["/images/images/north-east-wedding-dj-hero.jpeg"],
+    locale: "en_GB",
+    type: "website",
+  },
   icons: {
     icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
     apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],

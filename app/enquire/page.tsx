@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import BrandLogo from "../../components/BrandLogo";
+import SignOutButton from "../../components/SignOutButton";
 
 const initialForm = {
   contactName: "",
@@ -59,16 +60,19 @@ export default function EnquirePage() {
       <nav className="fixed top-0 z-50 w-full border-b border-slate-800 bg-slate-950/95 backdrop-blur-sm">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           <BrandLogo />
-          <Link href="/" className="text-sm font-medium uppercase tracking-[0.24em] text-slate-300 transition hover:text-white">
-            Back
-          </Link>
+          <div className="flex items-center gap-5">
+            <Link href="/" className="text-sm font-medium uppercase tracking-[0.24em] text-slate-300 transition hover:text-white">
+              Back
+            </Link>
+            <SignOutButton />
+          </div>
         </div>
       </nav>
 
       <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-28 sm:px-6 lg:px-8">
         <div className="absolute inset-0">
           <Image
-            src="/images/images/image8.jpeg"
+            src="/images/images/north-east-wedding-dj-hero.jpeg"
             alt="Wedding celebration"
             fill
             priority

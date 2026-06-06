@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import BrandLogo from "../../components/BrandLogo";
+import SignOutButton from "../../components/SignOutButton";
 
 const defaultSampleUrl = "https://www.mixcloud.com/HappilyEverAfter-Parties/";
 
@@ -8,7 +9,7 @@ const packages = [
   {
     name: "Classic Wedding",
     title: "Ever After Essentials",
-    image: "/images/images/image17.jpeg",
+    image: "/images/images/classic-wedding-reception-lights.jpeg",
     sampleUrl: defaultSampleUrl,
     description:
       "A polished wedding soundtrack from ceremony warmth to a full dancefloor finish, tailored around your must-play moments.",
@@ -16,7 +17,7 @@ const packages = [
   {
     name: "Ibiza Vibes",
     title: "White Isle Afterglow",
-    image: "/images/images/image13.jpeg",
+    image: "/images/images/ibiza-sunset-dj-package.jpeg",
     sampleUrl: defaultSampleUrl,
     description:
       "Sunset energy, vocal house, Balearic sparkle and hands-in-the-air classics for couples who want the party to glow.",
@@ -24,7 +25,7 @@ const packages = [
   {
     name: "School Pop Disco",
     title: "Tuck Shop Takeover",
-    image: "/images/images/image16.jpeg",
+    image: "/images/images/school-pop-disco-music.jpeg",
     sampleUrl: defaultSampleUrl,
     description:
       "Clean pop edits, party games energy and big singalong moments for school discos, family events and younger crowds.",
@@ -32,7 +33,7 @@ const packages = [
   {
     name: "More Indy/Rock",
     title: "Indie Til Midnight",
-    image: "/images/images/image15.jpeg",
+    image: "/images/images/indie-rock-party-crowd.jpeg",
     sampleUrl: defaultSampleUrl,
     description:
       "Guitars, anthems, festival favourites and alternative floor-fillers for guests who want more bite in the set.",
@@ -45,11 +46,15 @@ export default function PackagesPage() {
       <nav className="fixed top-0 z-50 w-full border-b border-slate-800 bg-slate-950/95 backdrop-blur-sm">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           <BrandLogo />
-          <div className="hidden gap-8 text-sm font-medium text-slate-300 md:flex">
-            <Link href="/#vibes" className="transition hover:text-white">Vibes</Link>
-            <Link href="/#gallery" className="transition hover:text-white">Gallery</Link>
-            <Link href="/#testimonials" className="transition hover:text-white">Testimonials</Link>
-            <Link href="/#contact" className="transition hover:text-white">Enquire</Link>
+          <div className="flex items-center gap-5">
+            <div className="hidden gap-8 text-sm font-medium text-slate-300 md:flex">
+              <Link href="/#vibes" className="transition hover:text-white">Vibes</Link>
+              <Link href="/#gallery" className="transition hover:text-white">Gallery</Link>
+              <Link href="/#testimonials" className="transition hover:text-white">Testimonials</Link>
+              <Link href="/blog" className="transition hover:text-white">Journal</Link>
+              <Link href="/#contact" className="transition hover:text-white">Enquire</Link>
+            </div>
+            <SignOutButton />
           </div>
         </div>
       </nav>
@@ -57,7 +62,7 @@ export default function PackagesPage() {
       <section className="relative flex min-h-[72vh] items-center justify-center overflow-hidden px-4 pt-28 text-center sm:px-6 lg:px-8">
         <div className="absolute inset-0">
           <Image
-            src="/images/images/image8.jpeg"
+            src="/images/images/north-east-wedding-dj-hero.jpeg"
             alt="Wedding dancefloor"
             fill
             priority

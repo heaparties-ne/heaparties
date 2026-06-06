@@ -49,8 +49,8 @@ function LoginForm() {
     <main className="relative flex min-h-screen items-center overflow-hidden bg-slate-950 px-4 py-10 text-slate-100 sm:px-6 lg:px-8">
       <div className="absolute inset-0">
         <Image
-          src="/images/images/image8.jpeg"
-          alt="Wedding celebration"
+          src="/images/images/north-east-wedding-dj-hero.jpeg"
+          alt="Wedding DJ decks overlooking a celebration"
           fill
           priority
           sizes="100vw"
@@ -72,8 +72,8 @@ function LoginForm() {
             Happily Ever After-Parties NE
           </p>
           <h1 className="text-5xl font-bold leading-tight tracking-tight text-white sm:text-6xl">
-            Something special<br />
-            <span className="text-violet-300">is coming soon.</span>
+            New website<br />
+            <span className="text-violet-300">coming soon.</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg font-light leading-relaxed text-slate-200 lg:mx-0">
             A fresh wedding and event DJ experience for the North East, built around brilliant music,

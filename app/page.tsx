@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import BrandLogo from "../components/BrandLogo";
+import SignOutButton from "../components/SignOutButton";
 
 // Assemble contact details client-side to avoid raw scraping in HTML
 const phoneParts = ["07356", "211274"];
@@ -156,12 +157,16 @@ export default function Home() {
         <div className="site-nav-inner max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <BrandLogo />
-            <div className="site-nav-links hidden md:flex gap-8 text-slate-300 text-sm font-medium">
-              <a href="#vibes" className="hover:text-white transition">Vibes</a>
-              <a href="#gallery" className="hover:text-white transition">Gallery</a>
-              <a href="#testimonials" className="hover:text-white transition">Testimonials</a>
-              <a href="#pricing" className="hover:text-white transition">Pricing</a>
-              <a href="#contact" className="hover:text-white transition">Enquire</a>
+            <div className="flex items-center gap-5">
+              <div className="site-nav-links hidden md:flex gap-8 text-slate-300 text-sm font-medium">
+                <a href="#vibes" className="hover:text-white transition">Vibes</a>
+                <a href="#gallery" className="hover:text-white transition">Gallery</a>
+                <a href="#testimonials" className="hover:text-white transition">Testimonials</a>
+                <a href="#pricing" className="hover:text-white transition">Pricing</a>
+                <Link href="/blog" className="hover:text-white transition">Journal</Link>
+                <a href="#contact" className="hover:text-white transition">Enquire</a>
+              </div>
+              <SignOutButton />
             </div>
           </div>
         </div>
@@ -173,8 +178,8 @@ export default function Home() {
         <div className="absolute inset-0 z-0 overflow-hidden">
           <div className="kenburns-wrapper absolute inset-0">
             <Image
-              src="/images/images/image8.jpeg"
-              alt="Hero background"
+              src="/images/images/north-east-wedding-dj-hero.jpeg"
+              alt="Wedding DJ decks overlooking a celebration"
               fill
               sizes="100vw"
               className="object-cover hero-img"
@@ -235,7 +240,7 @@ export default function Home() {
             {/* Vibe 1 */}
             <div className="group cursor-pointer relative overflow-hidden rounded-lg h-64 md:h-80">
               <Image
-                src="/images/images/image14.jpeg"
+                src="/images/images/church-wedding-ceremony.jpeg"
                 alt="Ceremony & Reception"
                 fill
                 sizes="100vw"
@@ -249,7 +254,7 @@ export default function Home() {
             {/* Vibe 2 */}
             <div className="group cursor-pointer relative overflow-hidden rounded-lg h-64 md:h-80">
               <Image
-                src="/images/images/image2.jpeg"
+                src="/images/images/colourful-dj-mixer-decks.jpeg"
                 alt="Wedding Reception"
                 fill
                 sizes="100vw"
@@ -263,7 +268,7 @@ export default function Home() {
             {/* Vibe 3 */}
             <div className="group cursor-pointer relative overflow-hidden rounded-lg h-64 md:h-80">
               <Image
-                src="/images/images/image3.jpeg"
+                src="/images/images/wedding-dj-decks-confetti-dancefloor.jpeg"
                 alt="DJ & Lighting"
                 fill
                 sizes="100vw"
@@ -277,7 +282,7 @@ export default function Home() {
             {/* Vibe 4 */}
             <div className="group cursor-pointer relative overflow-hidden rounded-lg h-64 md:h-80">
               <Image
-                src="/images/images/image4.jpeg"
+                src="/images/images/wedding-dancefloor-party-crowd.jpeg"
                 alt="Full Production"
                 fill
                 sizes="100vw"
@@ -307,7 +312,7 @@ export default function Home() {
             {/* Gallery 1 - Large */}
             <div className="md:col-span-2 md:row-span-2 relative overflow-hidden rounded-3xl h-80 md:h-[560px] group">
               <Image
-                src="/images/images/image11.jpeg"
+                src="/images/images/outdoor-garden-wedding-reception.jpeg"
                 alt="Featured Event"
                 fill
                 sizes="100vw"
@@ -324,7 +329,7 @@ export default function Home() {
             {/* Gallery 2 */}
             <div className="relative overflow-hidden rounded-3xl h-72 group">
               <Image
-                src="/images/images/image6.jpeg"
+                src="/images/images/wedding-dancefloor-disco-ball.jpeg"
                 alt="Gallery Event 2"
                 fill
                 sizes="100vw"
@@ -335,7 +340,7 @@ export default function Home() {
             {/* Gallery 3 */}
             <div className="relative overflow-hidden rounded-3xl h-72 group">
               <Image
-                src="/images/images/image7.jpeg"
+                src="/images/images/outdoor-wedding-dj-string-lights.jpeg"
                 alt="Gallery Event 3"
                 fill
                 sizes="100vw"
@@ -346,7 +351,7 @@ export default function Home() {
             {/* Gallery 4 */}
             <div className="relative overflow-hidden rounded-3xl h-72 group">
               <Image
-                src="/images/images/image9.jpeg"
+                src="/images/images/bride-groom-first-dance.jpeg"
                 alt="Gallery Event 4"
                 fill
                 sizes="100vw"
@@ -357,7 +362,7 @@ export default function Home() {
             {/* Gallery 5 */}
             <div className="relative overflow-hidden rounded-3xl h-72 group">
               <Image
-                src="/images/images/image1.jpeg"
+                src="/images/images/wedding-couple-dance-pink-lighting.jpeg"
                 alt="Gallery Event 5"
                 fill
                 sizes="100vw"
@@ -368,7 +373,7 @@ export default function Home() {
             {/* Gallery 6 */}
             <div className="relative overflow-hidden rounded-3xl h-72 group">
               <Image
-                src="/images/images/image5.jpeg"
+                src="/images/images/wedding-dj-performing-dancefloor.jpeg"
                 alt="Gallery Event 6"
                 fill
                 sizes="100vw"
@@ -413,7 +418,7 @@ export default function Home() {
           <div className="grid gap-6">
             <div className="relative overflow-hidden rounded-[2rem] h-96">
               <Image
-                src="/images/images/image10.jpeg"
+                src="/images/images/wedding-couple-rain-umbrella.jpeg"
                 alt="Featured celebration"
                 fill
                 sizes="100vw"
@@ -429,7 +434,7 @@ export default function Home() {
             <div className="grid gap-6 sm:grid-cols-1">
               <div className="relative overflow-hidden rounded-[2rem] h-48">
                 <Image
-                  src="/images/images/image12.jpeg"
+                  src="/images/images/pat-tested-dj-equipment.jpeg"
                   alt="PAT tested equipment"
                   fill
                   sizes="100vw"
@@ -537,7 +542,7 @@ export default function Home() {
         {/* Background image overlay */}
         <div className="absolute inset-0 opacity-20">
           <Image
-            src="/images/images/image8.jpeg"
+            src="/images/images/north-east-wedding-dj-hero.jpeg"
             alt="Background"
             fill
             className="object-cover"
@@ -639,6 +644,7 @@ export default function Home() {
             <BrandLogo showName={false} markClassName="p-2" />
           </div>
           <p>© 2026 Happily Ever After-Parties NE LTD. All rights reserved. | Fully insured & PAT tested for UK events</p>
+          <p><Link href="/blog" className="transition hover:text-white">North East wedding planning journal</Link></p>
           <p>Ltd. Company No. 17153234</p>
         </div>
       </footer>
