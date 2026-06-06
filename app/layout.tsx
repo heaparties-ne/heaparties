@@ -14,6 +14,61 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const businessStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://www.heaparties-ne.co.uk/#business",
+  name: "Happily Ever After-Parties NE LTD",
+  legalName: "Happily Ever After-Parties NE LTD",
+  url: "https://www.heaparties-ne.co.uk",
+  logo: "https://www.heaparties-ne.co.uk/logo.png",
+  image: "https://www.heaparties-ne.co.uk/images/images/north-east-wedding-dj-hero.jpeg",
+  telephone: "+447356211274",
+  email: "enquiries@heaparties-ne.co.uk",
+  description:
+    "Owner-led wedding and event DJ services across North East England, with professional sound, lighting and music tailored to each celebration.",
+  priceRange: "££",
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Wedding and event DJ services",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Wedding DJ service",
+          areaServed: "North East England",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Event DJ service",
+          areaServed: "North East England",
+        },
+      },
+    ],
+  },
+  areaServed: [
+    "Teesside",
+    "County Durham",
+    "Tyne and Wear",
+    "Northumberland",
+    "North Yorkshire",
+    "North East England",
+  ],
+  sameAs: ["https://www.mixcloud.com/HappilyEverAfter-Parties/"],
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+447356211274",
+    email: "enquiries@heaparties-ne.co.uk",
+    contactType: "customer enquiries",
+    areaServed: "GB",
+    availableLanguage: "English",
+  },
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.heaparties-ne.co.uk"),
   title: {
@@ -47,6 +102,10 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(businessStructuredData) }}
+        />
         {children}
         <Analytics />
         <SpeedInsights />

@@ -172,6 +172,14 @@ export default function EnquirePage() {
             >
               {status === "sending" ? "SENDING..." : "SEND ENQUIRY"}
             </button>
+            <p className="mt-4 text-sm leading-relaxed text-slate-400">
+              Your enquiry and submission IP address are sent securely by email. Approximate
+              IP-derived location is included to help identify genuine local enquiries. Read the{" "}
+              <Link href="/privacy" className="text-violet-300 transition hover:text-violet-200">
+                privacy policy
+              </Link>
+              .
+            </p>
           </form>
         </div>
       </section>

@@ -145,6 +145,9 @@ function LoginForm() {
               {loading ? "Checking..." : "View Preview"}
             </button>
           </form>
+          <p className="mt-5 text-center text-xs text-slate-500">
+            <a href="/privacy" className="transition hover:text-slate-300">Privacy policy</a>
+          </p>
         </aside>
       </div>
     </main>

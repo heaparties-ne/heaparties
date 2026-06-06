@@ -100,6 +100,51 @@ const testimonialGroups = Array.from(
     return group;
   },
 );
+const faqs = [
+  {
+    question: "How far ahead should we book our wedding DJ?",
+    answer:
+      "Popular Saturdays can be reserved well ahead, so it is worth enquiring as soon as you have a date and venue in mind. An enquiry does not commit you to booking.",
+  },
+  {
+    question: "Can we request songs and choose the style of music?",
+    answer:
+      "Yes. Your favourites, must-plays and do-not-plays help shape the night. Requests from guests can also be welcomed where they suit the celebration.",
+  },
+  {
+    question: "What is included in the evening DJ package?",
+    answer:
+      "The standard evening package includes professional DJ service, sound, lighting and setup from 7pm to midnight. Extra hours and additional production can be quoted separately.",
+  },
+  {
+    question: "Are you insured and is the equipment PAT tested?",
+    answer:
+      "Yes. Happily Ever After-Parties NE LTD holds up to £5m public liability cover, and the equipment used for events is PAT tested and regularly checked.",
+  },
+  {
+    question: "Which areas do you cover?",
+    answer:
+      "The service is based in Teesside and covers North East England, including County Durham, Tyne and Wear, Northumberland and nearby parts of North Yorkshire. Travel requirements are confirmed in your quote.",
+  },
+  {
+    question: "How do we secure our date?",
+    answer:
+      "Send an enquiry with your date, venue and plans. If the date is available, you will receive the booking details and the deposit required to confirm it.",
+  },
+];
+
+const faqStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
 
 function MixcloudIcon() {
   return (
@@ -153,6 +198,10 @@ export default function Home() {
 
   return (
     <main className="overflow-hidden bg-slate-950 text-slate-100">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
+      />
       {/* Navigation */}
       <nav className="site-nav fixed top-0 w-full z-50 bg-slate-950/95 backdrop-blur-sm border-b border-slate-800">
         <div className="site-nav-inner max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -193,7 +242,6 @@ export default function Home() {
           <div className="absolute inset-0 pointer-events-none">
             <div className="light light-1 absolute inset-0"></div>
             <div className="light light-2 absolute inset-0"></div>
-            <div className="festoon-sparkles absolute inset-0"></div>
           </div>
         </div>
 
@@ -543,6 +591,40 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Frequently Asked Questions */}
+      <section id="faq" className="border-y border-slate-800 bg-slate-900 px-4 py-24 sm:px-6 lg:px-8">
+        <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.65fr_1.35fr]">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-violet-300">
+              Good to know
+            </p>
+            <h2 className="mt-4 text-4xl font-bold text-white md:text-5xl">
+              Questions couples often ask
+            </h2>
+            <p className="mt-6 text-lg font-light leading-relaxed text-slate-300">
+              The practical details, without the mystery. Anything more specific can be covered in
+              your enquiry.
+            </p>
+          </div>
+          <div className="divide-y divide-slate-700 border-y border-slate-700">
+            {faqs.map((faq) => (
+              <details key={faq.question} className="group py-6">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-semibold text-white">
+                  {faq.question}
+                  <span
+                    aria-hidden="true"
+                    className="text-2xl font-light text-violet-300 transition group-open:rotate-45"
+                  >
+                    +
+                  </span>
+                </summary>
+                <p className="max-w-3xl pt-4 font-light leading-relaxed text-slate-300">{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Contact/CTA Section */}
       <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8 bg-slate-900 text-white relative overflow-hidden">
         {/* Background image overlay */}
@@ -650,7 +732,10 @@ export default function Home() {
             <BrandLogo showName={false} markClassName="p-2" />
           </div>
           <p>© 2026 Happily Ever After-Parties NE LTD. All rights reserved. | Fully insured & PAT tested for events across North East England</p>
-          <p><Link href="/blog" className="transition hover:text-white">North East wedding planning journal</Link></p>
+          <p className="flex flex-wrap justify-center gap-x-5 gap-y-2">
+            <Link href="/blog" className="transition hover:text-white">North East wedding planning journal</Link>
+            <Link href="/privacy" className="transition hover:text-white">Privacy policy</Link>
+          </p>
           <p>Ltd. Company No. 17153234</p>
         </div>
       </footer>

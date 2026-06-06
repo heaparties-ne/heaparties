@@ -11,5 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/blog/choosing-your-first-dance`, changeFrequency: "yearly", priority: 0.7 },
     { url: `${baseUrl}/blog/north-east-wedding-venue-dj-checklist`, changeFrequency: "yearly", priority: 0.7 },
     { url: `${baseUrl}/enquire`, changeFrequency: "yearly", priority: 0.7 },
+    { url: `${baseUrl}/privacy`, changeFrequency: "yearly", priority: 0.3 },
   ];
 }

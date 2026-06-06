@@ -3,7 +3,7 @@ import type { NextRequest } from "next/server";
 
 const PUBLIC_FILE = /\.(.*)$/;
 const LOGIN_PATH = "/login";
-const ALLOWED_PATHS = ["/api/login", "/api/login/", "/api/logout", "/api/logout/", "/api/enquiry", "/api/enquiry/", "/favicon.ico"];
+const ALLOWED_PATHS = ["/api/login", "/api/login/", "/api/logout", "/api/logout/", "/api/enquiry", "/api/enquiry/", "/privacy", "/favicon.ico"];
 const COOKIE_NAME = "heap_auth";
 const PASSWORD = process.env.SITE_PASSWORD || "heap2026";
 
@@ -20,6 +20,7 @@ export function proxy(req: NextRequest) {
     pathname.startsWith("/api/logout") ||
     pathname.startsWith("/api/enquiry") ||
     ALLOWED_PATHS.includes(pathname) ||
+    pathname === "/privacy" ||
     pathname === LOGIN_PATH
   ) {
     return NextResponse.next();
@@ -38,5 +39,5 @@ export function proxy(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!login|api/login|api/logout|_next|static|favicon.ico).*)"],
+  matcher: ["/((?!login|privacy|api/login|api/logout|_next|static|favicon.ico).*)"],
 };
