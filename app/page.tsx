@@ -152,8 +152,8 @@ export default function Home() {
   return (
     <main className="overflow-hidden bg-slate-950 text-slate-100">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-slate-950/95 backdrop-blur-sm border-b border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <nav className="site-nav fixed top-0 w-full z-50 bg-slate-950/95 backdrop-blur-sm border-b border-slate-800">
+        <div className="site-nav-inner max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <BrandLogo />
             <div className="hidden md:flex gap-8 text-slate-300 text-sm font-medium">
@@ -168,7 +168,7 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative h-screen w-full flex items-center justify-center overflow-hidden pt-16">
+      <section className="site-hero relative h-screen w-full flex items-center justify-center overflow-hidden pt-16">
         {/* Background image with Ken Burns effect */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <div className="kenburns-wrapper absolute inset-0">
@@ -191,7 +191,7 @@ export default function Home() {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 text-center text-white px-4 max-w-4xl">
+        <div className="site-hero-content relative z-10 text-center text-white px-4 max-w-4xl">
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
             YOUR NIGHT<br />
             <span className="text-violet-300">YOUR VIBE</span>
