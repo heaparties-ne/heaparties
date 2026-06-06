@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import BrandLogo from "../components/BrandLogo";
+import LocalServiceMessage from "../components/LocalServiceMessage";
 import SignOutButton from "../components/SignOutButton";
 
 // Assemble contact details client-side to avoid raw scraping in HTML
@@ -205,12 +206,13 @@ export default function Home() {
             YOUR NIGHT<br />
             <span className="text-violet-300">YOUR VIBE</span>
           </h1>
-          <p className="text-lg md:text-xl font-light text-gray-100 mb-10 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl font-light text-gray-100 max-w-2xl mx-auto">
             North East England weddings & events, expertly soundtracked
           </p>
+          <LocalServiceMessage />
           <Link
             href="/enquire"
-            className="inline-flex items-center justify-center bg-white text-slate-900 px-8 py-4 font-semibold tracking-wider hover:bg-slate-200 transition"
+            className="mt-10 inline-flex items-center justify-center bg-white text-slate-900 px-8 py-4 font-semibold tracking-wider hover:bg-slate-200 transition"
           >
             ENQUIRE NOW
           </Link>

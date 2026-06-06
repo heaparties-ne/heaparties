@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import BrandLogo from "../../components/BrandLogo";
-import SignOutButton from "../../components/SignOutButton";
+import JournalNav from "../../components/JournalNav";
 
 export const metadata: Metadata = {
   title: "North East England Wedding Venues & DJ Planning",
@@ -22,23 +21,34 @@ const venues = [
   "The Grand Hotel Tynemouth",
 ];
 
+const journalPosts = [
+  {
+    title: "PAT testing week: the quiet work behind a great party",
+    description: "Why testing, visual checks and careful equipment maintenance are worth asking about.",
+    href: "/blog/pat-testing-week",
+    image: "/images/images/pat-tested-dj-equipment.jpeg",
+    category: "Safety behind the scenes",
+  },
+  {
+    title: "How to choose your first dance without overthinking it",
+    description: "A few practical ways to find a song and a first-dance format that actually feels like you.",
+    href: "/blog/choosing-your-first-dance",
+    image: "/images/images/bride-groom-first-dance.jpeg",
+    category: "Music planning",
+  },
+  {
+    title: "Your North East wedding venue DJ checklist",
+    description: "The useful questions that make evening entertainment easier to plan.",
+    href: "/blog/north-east-wedding-venue-dj-checklist",
+    image: "/images/images/wedding-dj-decks-confetti-dancefloor.jpeg",
+    category: "Venue planning",
+  },
+];
+
 export default function BlogPage() {
   return (
     <main className="min-h-screen overflow-hidden bg-slate-950 text-slate-100">
-      <nav className="fixed top-0 z-50 w-full border-b border-slate-800 bg-slate-950/95 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-          <BrandLogo />
-          <div className="flex items-center gap-5">
-            <Link
-              href="/"
-              className="text-sm font-medium uppercase tracking-[0.24em] text-slate-300 transition hover:text-white"
-            >
-              Back
-            </Link>
-            <SignOutButton />
-          </div>
-        </div>
-      </nav>
+      <JournalNav />
 
       <header className="relative flex min-h-[72vh] items-end overflow-hidden px-4 pb-16 pt-32 sm:px-6 lg:px-8">
         <Image
@@ -144,6 +154,48 @@ export default function BlogPage() {
               >
                 LISTEN TO SAMPLE MIXES
               </Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-slate-900 px-4 py-20 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-6xl">
+            <div className="mb-12 max-w-3xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-violet-300">
+                More from the journal
+              </p>
+              <h2 className="mt-4 text-4xl font-bold text-white md:text-5xl">
+                Useful things to know before the big night
+              </h2>
+            </div>
+            <div className="grid gap-6 lg:grid-cols-3">
+              {journalPosts.map((post) => (
+                <Link
+                  key={post.href}
+                  href={post.href}
+                  className="group overflow-hidden rounded-lg border border-slate-800 bg-slate-950 transition hover:border-violet-400/60"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <Image
+                      src={post.image}
+                      alt=""
+                      fill
+                      sizes="(min-width: 1024px) 33vw, 100vw"
+                      className="object-cover transition duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-violet-300">
+                      {post.category}
+                    </p>
+                    <h3 className="mt-3 text-2xl font-bold leading-tight text-white">{post.title}</h3>
+                    <p className="mt-4 font-light leading-relaxed text-slate-300">{post.description}</p>
+                    <span className="mt-6 inline-block text-sm font-semibold uppercase tracking-[0.2em] text-white">
+                      Read article
+                    </span>
+                  </div>
+                </Link>
+              ))}
             </div>
           </div>
         </section>
