@@ -28,12 +28,12 @@ const sections = [
       <>
         Information you provide may include your name, event date, venue or location, phone number,
         requirements and anything else included in your enquiry or later correspondence. When an
-        enquiry form is submitted, the website also records the submitting IP address and
-        IP-derived approximate location, which may include town, region, country and approximate
-        coordinates. A recognised North East town may be used to personalise a line on the home
-        page; the website does not create a location history from this feature. The website may
-        also process technical usage and performance information through Vercel Analytics and Speed
-        Insights.
+        enquiry form is submitted, the website uses IP-derived approximate location information,
+        which may include town, region, country and approximate coordinates. The submitting IP
+        address is not included in the enquiry email. A recognised North East town may be used to
+        personalise a line on the home page; the website does not create a location history from
+        this feature. The website may also process technical usage and performance information
+        through Vercel Analytics and Speed Insights.
       </>
     ),
   },

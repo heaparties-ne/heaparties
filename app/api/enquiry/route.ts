@@ -29,20 +29,6 @@ function formatUkDate(dateValue: string) {
   return dateValue || "Not provided";
 }
 
-function getClientIp(req: NextRequest) {
-  const forwardedFor = req.headers.get("x-forwarded-for");
-  if (forwardedFor) {
-    return forwardedFor.split(",")[0]?.trim() || "Not available";
-  }
-
-  return (
-    req.headers.get("x-real-ip") ||
-    req.headers.get("x-vercel-forwarded-for") ||
-    req.headers.get("cf-connecting-ip") ||
-    "Not available"
-  );
-}
-
 function getIpLocation(req: NextRequest) {
   const city = req.headers.get("x-vercel-ip-city");
   const region = req.headers.get("x-vercel-ip-country-region");
@@ -55,11 +41,6 @@ function getIpLocation(req: NextRequest) {
   return place ? `${decodeURIComponent(place)}${coordinates}` : "Not available";
 }
 
-function getNearestTown(req: NextRequest) {
-  const city = req.headers.get("x-vercel-ip-city");
-  return city ? decodeURIComponent(city) : "Not available";
-}
-
 export async function POST(req: NextRequest) {
   const body = (await req.json()) as EnquiryBody;
   const contactName = body.contactName?.trim() || "Not provided";
@@ -67,8 +48,6 @@ export async function POST(req: NextRequest) {
   const location = body.location?.trim() || "Not provided";
   const phoneNumber = body.phoneNumber?.trim() || "Not provided";
   const requirements = body.requirements?.trim() || "Not provided";
-  const clientIp = getClientIp(req);
-  const nearestTown = getNearestTown(req);
   const ipLocation = getIpLocation(req);
 
   if (!resendApiKey || !enquiryFromEmail) {
@@ -96,8 +75,6 @@ export async function POST(req: NextRequest) {
     requirements,
     "",
     "Submission details:",
-    `IP Address: ${clientIp}`,
-    `Nearest Town: ${nearestTown}`,
     `IP Location: ${ipLocation}`,
   ].join("\n");
 
