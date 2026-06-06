@@ -97,7 +97,7 @@ function LoginForm() {
             <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
               Preview access
             </p>
-            <h2 className="text-xl font-semibold text-white">Already have the details?</h2>
+            <h2 className="text-xl font-semibold text-white">Already on the guestlist?</h2>
           </div>
 
           <form ref={formRef} onSubmit={handleSubmit} className="space-y-4" autoComplete="off">
