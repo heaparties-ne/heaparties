@@ -5,9 +5,9 @@ import BrandLogo from "../../components/BrandLogo";
 import SignOutButton from "../../components/SignOutButton";
 
 export const metadata: Metadata = {
-  title: "North East Wedding Venues & DJ Planning",
+  title: "North East England Wedding Venues & DJ Planning",
   description:
-    "A practical guide to choosing a North East wedding venue and planning the music, sound and atmosphere for your celebration.",
+    "A practical guide to choosing a North East England wedding venue and planning the music, sound and atmosphere for your celebration.",
 };
 
 const venues = [
@@ -55,7 +55,7 @@ export default function BlogPage() {
             The planning journal
           </p>
           <h1 className="max-w-4xl text-5xl font-bold leading-tight text-white md:text-7xl">
-            North East wedding venues and the soundtrack to match
+            North East England wedding venues and the soundtrack to match
           </h1>
           <p className="mt-6 max-w-2xl text-lg font-light leading-relaxed text-slate-200">
             A venue shapes the look of the day. The music shapes how it feels. Here is what to think
@@ -77,7 +77,7 @@ export default function BlogPage() {
             </div>
             <div className="space-y-6 text-lg font-light leading-relaxed text-slate-300">
               <p>
-                The North East has everything from country houses and converted barns to city spaces
+                North East England has everything from country houses and converted barns to city spaces
                 and coastal hotels. Couples often shortlist venues including {venues.slice(0, -1).join(", ")} and{" "}
                 {venues.at(-1)}.
               </p>

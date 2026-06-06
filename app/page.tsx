@@ -192,17 +192,21 @@ export default function Home() {
           <div className="absolute inset-0 pointer-events-none">
             <div className="light light-1 absolute inset-0"></div>
             <div className="light light-2 absolute inset-0"></div>
+            <div className="festoon-sparkles absolute inset-0"></div>
           </div>
         </div>
 
         {/* Content */}
         <div className="site-hero-content relative z-10 text-center text-white px-4 max-w-4xl">
+          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-violet-100 md:text-sm">
+            Based in Teesside | Serving North East England
+          </p>
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
             YOUR NIGHT<br />
             <span className="text-violet-300">YOUR VIBE</span>
           </h1>
           <p className="text-lg md:text-xl font-light text-gray-100 mb-10 max-w-2xl mx-auto">
-            North East weddings & events, expertly soundtracked
+            North East England weddings & events, expertly soundtracked
           </p>
           <Link
             href="/enquire"
@@ -643,7 +647,7 @@ export default function Home() {
           <div className="flex justify-center pb-4">
             <BrandLogo showName={false} markClassName="p-2" />
           </div>
-          <p>© 2026 Happily Ever After-Parties NE LTD. All rights reserved. | Fully insured & PAT tested for UK events</p>
+          <p>© 2026 Happily Ever After-Parties NE LTD. All rights reserved. | Fully insured & PAT tested for events across North East England</p>
           <p><Link href="/blog" className="transition hover:text-white">North East wedding planning journal</Link></p>
           <p>Ltd. Company No. 17153234</p>
         </div>
