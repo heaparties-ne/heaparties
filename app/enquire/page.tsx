@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import BrandLogo from "../../components/BrandLogo";
 
 declare global {
@@ -20,19 +20,16 @@ const initialForm = {
   customerMatchConsent: false,
 };
 
-function formatDateInput(value: string) {
-  const digits = value.replace(/\D/g, "").slice(0, 8);
-  const day = digits.slice(0, 2);
-  const month = digits.slice(2, 4);
-  const year = digits.slice(4, 8);
-
-  if (digits.length <= 2) return day;
-  if (digits.length <= 4) return `${day}/${month}`;
-  return `${day}/${month}/${year}`;
+function getTodayIsoDate() {
+  const today = new Date();
+  const timezoneOffset = today.getTimezoneOffset() * 60_000;
+  return new Date(today.getTime() - timezoneOffset).toISOString().slice(0, 10);
 }
 
 export default function EnquirePage() {
+  const dateInputRef = useRef<HTMLInputElement>(null);
   const [form, setForm] = useState(initialForm);
+  const [today] = useState(getTodayIsoDate);
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [message, setMessage] = useState("");
 
@@ -128,12 +125,13 @@ export default function EnquirePage() {
               <label className="block text-slate-300">
                 <span className="text-sm uppercase tracking-[0.24em]">Date</span>
                 <input
-                  type="text"
-                  inputMode="numeric"
-                  placeholder="DD/MM/YYYY"
+                  ref={dateInputRef}
+                  type="date"
+                  min={today}
                   value={form.date}
-                  onChange={(event) => updateField("date", formatDateInput(event.target.value))}
-                  className="mt-3 w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-4 text-white outline-none transition placeholder:text-slate-500 focus:border-violet-300"
+                  onClick={() => dateInputRef.current?.showPicker?.()}
+                  onChange={(event) => updateField("date", event.target.value)}
+                  className="mt-3 w-full cursor-pointer rounded-lg border border-slate-700 bg-slate-950 px-4 py-4 text-white outline-none transition focus:border-violet-300"
                 />
               </label>
 
