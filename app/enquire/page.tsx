@@ -32,7 +32,7 @@ function formatPhoneNumber(value: string) {
     ? `+${allowedCharacters.slice(1).replace(/\+/g, "")}`
     : allowedCharacters.replace(/\+/g, "");
 
-  return normalized.slice(0, 11);
+  return normalized.slice(0, normalized.startsWith("+") ? 13 : 11);
 }
 
 export default function EnquirePage() {
@@ -159,7 +159,7 @@ export default function EnquirePage() {
                 <input
                   type="tel"
                   inputMode="tel"
-                  maxLength={11}
+                  maxLength={13}
                   pattern="\+?[0-9]*"
                   value={form.phoneNumber}
                   onChange={(event) =>
