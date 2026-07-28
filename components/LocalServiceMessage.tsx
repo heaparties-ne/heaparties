@@ -20,7 +20,7 @@ export default function LocalServiceMessage() {
 
   return (
     <p className="mt-4 text-sm font-medium text-violet-100">
-      Planning a celebration near {city}? You&apos;re right in my service area.
+      Planning a celebration near {city}? You&apos;re right in our service area.
     </p>
   );
 }

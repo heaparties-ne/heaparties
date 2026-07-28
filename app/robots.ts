@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: "/login",
+      disallow: ["/login", "/api"],
     },
     sitemap: "https://www.heaparties-ne.co.uk/sitemap.xml",
   };

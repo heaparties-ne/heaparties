@@ -5,6 +5,10 @@ import JournalNav from "../../components/JournalNav";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "How Happily Ever After-Parties NE LTD collects, uses and protects personal information.",
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 const sections = [
@@ -57,8 +61,24 @@ const sections = [
         Vercel for website hosting, analytics and performance monitoring, and Resend for delivery of
         website enquiry emails. Information may also be shared with professional advisers,
         insurers, payment providers used for a booking, or public authorities where required by
-        law. External services reached through links, including WhatsApp and Mixcloud, process
+        law. External services reached through links, including WhatsApp and Spotify, process
         information under their own privacy policies.
+      </>
+    ),
+  },
+  {
+    title: "Google advertising and Customer Match",
+    content: (
+      <>
+        Where separate consent has been given, contact information such as a name, email address,
+        phone number or postal address may be securely shared with Google to provide advertising
+        measurement services and Customer Match on our behalf. Google acts as a processor for
+        Customer Match under the applicable Google Ads Data Processing Terms. Customer information
+        uploaded for matching is transformed into hashed data and used to match records with Google
+        accounts. We will only upload first-party information collected through a direct relationship
+        with the individual and recorded as consented for this purpose. Advertising-data consent is
+        optional, is not required to make an enquiry or booking, and may be withdrawn at any time by
+        emailing us. Withdrawing consent does not affect processing that took place before withdrawal.
       </>
     ),
   },
@@ -88,10 +108,12 @@ const sections = [
     title: "Cookies and technical tools",
     content: (
       <>
-        The password-protected preview uses a necessary authentication cookie so authorised visitors
-        can remain signed in. Vercel Analytics and Speed Insights are used to understand visits and
-        website performance. Browser settings can be used to control cookies, although blocking
-        necessary cookies may stop protected features from working.
+        Necessary storage is used to remember privacy choices and provide essential website
+        functions. Vercel Analytics and Speed Insights provide technical usage and performance
+        information. Google Ads measurement is used to understand whether advertising leads to
+        enquiries. Google advertising and analytics storage defaults to denied and is enabled only
+        in line with the choices made through the cookie banner. Choices can be rejected, accepted,
+        customised or changed later using the Cookie settings button.
       </>
     ),
   },
@@ -129,7 +151,7 @@ const sections = [
 export default function PrivacyPage() {
   return (
     <main className="min-h-screen bg-slate-950 text-slate-100">
-      <JournalNav showSignOut={false} />
+      <JournalNav />
       <header className="border-b border-slate-800 px-4 pb-16 pt-36 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-5xl">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-violet-300">
@@ -140,7 +162,7 @@ export default function PrivacyPage() {
             A clear explanation of what information is collected, why it is needed and how it is
             protected.
           </p>
-          <p className="mt-5 text-sm text-slate-400">Last updated: 6 June 2026</p>
+          <p className="mt-5 text-sm text-slate-400">Last updated: 23 July 2026</p>
         </div>
       </header>
 

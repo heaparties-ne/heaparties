@@ -4,7 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import BrandLogo from "../components/BrandLogo";
 import LocalServiceMessage from "../components/LocalServiceMessage";
-import SignOutButton from "../components/SignOutButton";
+
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
 
 // Assemble contact details client-side to avoid raw scraping in HTML
 const phoneParts = ["07356", "211274"];
@@ -28,8 +33,16 @@ const mailBody = encodeURIComponent(
   ].join("\n"),
 );
 const mailtoHref = `mailto:${email}?subject=${mailSubject}&body=${mailBody}`;
-const mixcloudUrl = "https://www.mixcloud.com/HappilyEverAfter-Parties/";
-const mixcloudBrandColor = "#5000FF";
+const spotifyProfileUrl = "https://open.spotify.com/user/31k747dtbsgpaszqbkkqvt47id6i?si=b6f91bce12ff4428";
+
+function reportWhatsAppConversion() {
+  window.gtag?.("event", "conversion", {
+    send_to: "AW-18328463194/Wo5RCPi3z9McENrO2KNE",
+    value: 1.0,
+    currency: "GBP",
+  });
+}
+
 const testimonials = [
   {
     quote:
@@ -114,7 +127,7 @@ const faqs = [
   {
     question: "What is included in the evening DJ package?",
     answer:
-      "The standard evening package includes professional DJ service, sound, lighting and setup from 7pm to midnight. Extra hours and additional production can be quoted separately.",
+      "Every quote is built around the event, but a typical evening booking includes professional DJ service, sound, lighting and setup. Timings, travel, venue access and any additional production are confirmed before a price is agreed.",
   },
   {
     question: "Are you insured and is the equipment PAT tested?",
@@ -124,7 +137,7 @@ const faqs = [
   {
     question: "Which areas do you cover?",
     answer:
-      "The service is based in Teesside and covers North East England, including County Durham, Tyne and Wear, Northumberland and nearby parts of North Yorkshire. Travel requirements are confirmed in your quote.",
+      "The service is based in Teesside and covers Yorkshire, County Durham, Cumbria and Northumberland. Travel requirements are confirmed in your quote.",
   },
   {
     question: "How do we secure our date?",
@@ -146,27 +159,14 @@ const faqStructuredData = {
   })),
 };
 
-function MixcloudIcon() {
+function SpotifyIcon() {
   return (
     <svg
       aria-hidden="true"
-      viewBox="-2 -3 32 24"
-      className="h-4 w-7 shrink-0 translate-y-0.5 overflow-visible"
-      fill="none"
+      viewBox="0 0 24 24"
+      className="h-5 w-5 shrink-0 fill-current"
     >
-      <path
-        d="M8.2 14.5h11.9a5.5 5.5 0 0 0 .4-11 7.2 7.2 0 0 0-13.6 2A4.6 4.6 0 0 0 8.2 14.5Z"
-        stroke="currentColor"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M2.5 14.5h1.8M23.7 14.5h1.8"
-        stroke="currentColor"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-      />
+      <path d="M12 1.75C6.34 1.75 1.75 6.34 1.75 12S6.34 22.25 12 22.25 22.25 17.66 22.25 12 17.66 1.75 12 1.75Zm4.7 14.78a.77.77 0 0 1-1.06.26c-2.9-1.77-6.55-2.17-10.85-1.19a.77.77 0 1 1-.34-1.5c4.7-1.07 8.74-.6 11.99 1.39.36.22.48.69.26 1.04Zm1.25-2.78a.96.96 0 0 1-1.32.32c-3.31-2.04-8.36-2.63-12.28-1.44a.96.96 0 0 1-.56-1.84c4.47-1.36 10.04-.7 13.84 1.64.45.28.6.87.32 1.32Zm.11-2.9C14.08 8.49 7.52 8.27 3.71 9.42a1.15 1.15 0 1 1-.67-2.2c4.38-1.33 11.62-1.07 16.19 1.65a1.15 1.15 0 0 1-1.17 1.98Z" />
     </svg>
   );
 }
@@ -204,19 +204,15 @@ export default function Home() {
       />
       {/* Navigation */}
       <nav className="site-nav fixed top-0 w-full z-50 bg-slate-950/95 backdrop-blur-sm border-b border-slate-800">
-        <div className="site-nav-inner max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="site-nav-inner max-w-7xl mx-auto px-4 py-3 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <BrandLogo />
-            <div className="flex items-center gap-5">
-              <div className="site-nav-links hidden md:flex gap-8 text-slate-300 text-sm font-medium">
-                <a href="#vibes" className="hover:text-white transition">Vibes</a>
-                <a href="#gallery" className="hover:text-white transition">Gallery</a>
-                <a href="#testimonials" className="hover:text-white transition">Testimonials</a>
-                <a href="#pricing" className="hover:text-white transition">Pricing</a>
-                <Link href="/blog" className="hover:text-white transition">Journal</Link>
-                <a href="#contact" className="hover:text-white transition">Enquire</a>
-              </div>
-              <SignOutButton />
+            <div className="site-nav-links hidden gap-8 text-sm font-medium text-slate-300 md:flex">
+              <a href="#vibes" className="transition hover:text-white">Vibes</a>
+              <a href="#testimonials" className="transition hover:text-white">Testimonials</a>
+              <a href="#pricing" className="transition hover:text-white">Quotes</a>
+              <Link href="/blog" className="transition hover:text-white">Journal</Link>
+              <a href="#contact" className="transition hover:text-white">Enquire</a>
             </div>
           </div>
         </div>
@@ -231,6 +227,7 @@ export default function Home() {
               src="/images/images/north-east-wedding-dj-hero.jpeg"
               alt="Wedding DJ decks overlooking a celebration"
               fill
+              priority
               sizes="100vw"
               className="object-cover hero-img"
             />
@@ -248,14 +245,14 @@ export default function Home() {
         {/* Content */}
         <div className="site-hero-content relative z-10 text-center text-white px-4 max-w-4xl">
           <p className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-violet-100 md:text-sm">
-            Based in Teesside | Serving North East England
+            Based in Teesside | Yorkshire, Durham, Cumbria & Northumberland
           </p>
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
             YOUR NIGHT<br />
             <span className="text-violet-300">YOUR VIBE</span>
           </h1>
           <p className="text-lg md:text-xl font-light text-gray-100 max-w-2xl mx-auto">
-            North East England weddings & events, expertly soundtracked
+            Weddings & events across Yorkshire, Durham, Cumbria and Northumberland, expertly soundtracked
           </p>
           <LocalServiceMessage />
           <Link
@@ -297,7 +294,7 @@ export default function Home() {
                 src="/images/images/church-wedding-ceremony.jpeg"
                 alt="Ceremony & Reception"
                 fill
-                sizes="100vw"
+                sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
                 className="object-cover group-hover:scale-110 transition duration-500"
               />
               <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition flex items-end p-6">
@@ -311,7 +308,7 @@ export default function Home() {
                 src="/images/images/colourful-dj-mixer-decks.jpeg"
                 alt="Wedding Reception"
                 fill
-                sizes="100vw"
+                sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
                 className="object-cover group-hover:scale-110 transition duration-500"
               />
               <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition flex items-end p-6">
@@ -325,7 +322,7 @@ export default function Home() {
                 src="/images/images/wedding-dj-decks-confetti-dancefloor.jpeg"
                 alt="DJ & Lighting"
                 fill
-                sizes="100vw"
+                sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
                 className="object-cover group-hover:scale-110 transition duration-500"
               />
               <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition flex items-end p-6">
@@ -339,100 +336,12 @@ export default function Home() {
                 src="/images/images/wedding-dancefloor-party-crowd.jpeg"
                 alt="Full Production"
                 fill
-                sizes="100vw"
+                sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
                 className="object-cover group-hover:scale-110 transition duration-500"
               />
               <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition flex items-end p-6">
                 <h3 className="text-white text-xl font-bold">FULL PRODUCTION</h3>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Gallery Section */}
-      <section id="gallery" className="py-24 px-4 sm:px-6 lg:px-8 bg-slate-950">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-              Our Events
-            </h2>
-            <p className="text-slate-300 text-lg">
-              Beautiful celebrations we&apos;ve been part of
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {/* Gallery 1 - Large */}
-            <div className="md:col-span-2 md:row-span-2 relative overflow-hidden rounded-3xl h-80 md:h-[560px] group">
-              <Image
-                src="/images/images/outdoor-garden-wedding-reception.jpeg"
-                alt="Featured Event"
-                fill
-                sizes="100vw"
-                className="object-cover group-hover:scale-105 transition duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8">
-                <div>
-                  <h3 className="text-white text-2xl font-bold">Premium Wedding</h3>
-                  <p className="text-gray-200 mt-2">Featured celebration</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Gallery 2 */}
-            <div className="relative overflow-hidden rounded-3xl h-72 group">
-              <Image
-                src="/images/images/wedding-dancefloor-disco-ball.jpeg"
-                alt="Gallery Event 2"
-                fill
-                sizes="100vw"
-                className="object-cover group-hover:scale-105 transition duration-500"
-              />
-            </div>
-
-            {/* Gallery 3 */}
-            <div className="relative overflow-hidden rounded-3xl h-72 group">
-              <Image
-                src="/images/images/outdoor-wedding-dj-string-lights.jpeg"
-                alt="Gallery Event 3"
-                fill
-                sizes="100vw"
-                className="object-cover group-hover:scale-105 transition duration-500"
-              />
-            </div>
-
-            {/* Gallery 4 */}
-            <div className="relative overflow-hidden rounded-3xl h-72 group">
-              <Image
-                src="/images/images/bride-groom-first-dance.jpeg"
-                alt="Gallery Event 4"
-                fill
-                sizes="100vw"
-                className="object-cover group-hover:scale-105 transition duration-500"
-              />
-            </div>
-
-            {/* Gallery 5 */}
-            <div className="relative overflow-hidden rounded-3xl h-72 group">
-              <Image
-                src="/images/images/wedding-couple-dance-pink-lighting.jpeg"
-                alt="Gallery Event 5"
-                fill
-                sizes="100vw"
-                className="object-cover group-hover:scale-105 transition duration-500"
-              />
-            </div>
-
-            {/* Gallery 6 */}
-            <div className="relative overflow-hidden rounded-3xl h-72 group">
-              <Image
-                src="/images/images/wedding-dj-performing-dancefloor.jpeg"
-                alt="Gallery Event 6"
-                fill
-                sizes="100vw"
-                className="object-cover group-hover:scale-105 transition duration-500"
-              />
             </div>
           </div>
         </div>
@@ -447,10 +356,10 @@ export default function Home() {
                 Professional Musicians & DJs
               </h2>
               <p className="text-xl text-slate-300 font-light leading-relaxed mb-6">
-                Happily Ever After-Parties is an owner-led wedding DJ service built on genuine musical experience, careful planning and a proper love for a full dancefloor. With 25 years of DJ experience across the UK, I know how to read the room and keep your celebration moving all night.
+                Happily Ever After-Parties is a professionally run wedding DJ service built on genuine musical experience, careful planning and a proper love for a full dancefloor. With 25 years of DJ experience across the UK, every booking is shaped around the room, the guests and the moments that keep your celebration moving all night.
               </p>
               <p className="text-lg text-slate-300 font-light leading-relaxed mb-6">
-                I hold both college and university qualifications in music and audio technology, so every show is handled with the technical care, sound quality and attention to detail your event deserves.
+                The service is backed by college and university qualifications in music and audio technology, so every show is handled with the technical care, sound quality and attention to detail your event deserves.
               </p>
               <p className="text-lg text-slate-300 font-light leading-relaxed">
                 Happily Ever After-Parties NE LTD is fully insured with up to £5m public liability cover, and all equipment is PAT tested before every event for added peace of mind.
@@ -473,9 +382,9 @@ export default function Home() {
             <div className="relative overflow-hidden rounded-[2rem] h-96">
               <Image
                 src="/images/images/wedding-couple-rain-umbrella.jpeg"
-                alt="Featured celebration"
+                alt="Wedding couple under an umbrella"
                 fill
-                sizes="100vw"
+                sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent p-6 flex items-end">
@@ -491,7 +400,7 @@ export default function Home() {
                   src="/images/images/pat-tested-dj-equipment.jpeg"
                   alt="PAT tested equipment"
                   fill
-                  sizes="100vw"
+                  sizes="(min-width: 1024px) 50vw, 100vw"
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent p-4 flex items-end">
@@ -544,49 +453,58 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Pricing Section */}
+      {/* Quote Section */}
       <section id="pricing" className="py-24 px-4 sm:px-6 lg:px-8 bg-slate-950">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-14">
+          <div className="mx-auto mb-14 max-w-3xl text-center">
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-violet-300">
+              Priced around your plans
+            </p>
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-              Simple Evening Pricing
+              Every event is quoted individually
             </h2>
-            <p className="text-slate-300 text-lg">
-              Clear starting point for wedding and event DJ bookings
+            <p className="text-lg leading-relaxed text-slate-300">
+              Your quote is shaped around the venue, date, timings, travel, access, music brief and
+              the kind of atmosphere you want to create. That keeps things clear, fair and tailored
+              to the celebration rather than squeezed into a fixed package.
             </p>
           </div>
 
           <div className="grid gap-6 md:grid-cols-3">
-            <div className="rounded-lg border border-violet-500/40 bg-slate-900 p-8 shadow-[0_24px_60px_-40px_rgba(139,92,246,0.9)] md:col-span-2">
+            <div className="rounded-lg border border-violet-500/40 bg-slate-900 p-8 shadow-[0_24px_60px_-40px_rgba(139,92,246,0.9)]">
               <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-violet-200">
-                Evening DJ package
+                Your timings
               </p>
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-                <div>
-                  <p className="text-5xl font-bold text-white">£800</p>
-                  <p className="mt-3 text-xl font-light text-slate-300">
-                    7pm - 12am
-                  </p>
-                </div>
-                <p className="max-w-md text-left text-slate-300 leading-relaxed sm:text-right">
-                  Includes professional DJ service, premium sound, lighting and setup for a polished evening celebration.
-                </p>
-              </div>
+              <p className="text-slate-300 leading-relaxed">
+                Early setup, evening-only, longer parties and late finishes all have different
+                requirements, so the quote reflects the time actually needed.
+              </p>
             </div>
 
             <div className="rounded-lg border border-violet-500/40 bg-slate-900 p-8 shadow-[0_24px_60px_-40px_rgba(139,92,246,0.9)]">
               <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-violet-200">
-                Extra hours
+                Your venue
               </p>
-              <p className="text-4xl font-bold text-white">£50</p>
-              <p className="mt-3 text-lg font-light text-slate-300">
-                per hour outside 7pm - 12am
+              <p className="text-slate-300 leading-relaxed">
+                Access, room size, travel, sound limits and turnaround times can all affect the
+                setup. Getting those details right makes the night run smoothly.
+              </p>
+            </div>
+
+            <div className="rounded-lg border border-violet-500/40 bg-slate-900 p-8 shadow-[0_24px_60px_-40px_rgba(139,92,246,0.9)]">
+              <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-violet-200">
+                Your soundtrack
+              </p>
+              <p className="text-slate-300 leading-relaxed">
+                From a simple evening reception to a more involved celebration, the music brief,
+                planning and production are built around the feel you want.
               </p>
             </div>
           </div>
 
-          <p className="mt-8 text-center text-sm text-slate-400">
-            Final quotes can vary by date, travel, venue access and any extra production requirements.
+          <p className="mx-auto mt-8 max-w-3xl text-center text-sm leading-relaxed text-slate-400">
+            Send the date, venue and a rough idea of what you need. You&apos;ll get a clear,
+            no-pressure quote based on your requirements.
           </p>
         </div>
       </section>
@@ -662,7 +580,7 @@ export default function Home() {
               href="#pricing"
               className="inline-flex items-center justify-center border-2 border-white text-white px-8 py-4 font-bold tracking-wider hover:bg-white hover:text-slate-900 transition"
             >
-              VIEW PRICING
+              HOW QUOTES WORK
             </a>
           </div>
 
@@ -672,6 +590,7 @@ export default function Home() {
                 href={`https://wa.me/${phoneNumberInternational}`}
                 target="_blank"
                 rel="noreferrer"
+                onClick={reportWhatsAppConversion}
                 className="inline-flex items-center justify-center gap-3 rounded-full px-8 py-4 text-sm font-semibold uppercase tracking-[0.24em] text-white shadow-sm transition hover:brightness-110"
                 style={{ backgroundColor: "#25D366" }}
               >
@@ -681,14 +600,15 @@ export default function Home() {
               <span className="text-sm text-gray-300">(WhatsApp Business ready)</span>
             </div>
               <a
-                href={mixcloudUrl}
+                href={spotifyProfileUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center gap-3 rounded-full px-8 py-4 text-sm font-semibold uppercase tracking-[0.24em] text-white shadow-sm transition hover:brightness-110"
-                style={{ backgroundColor: mixcloudBrandColor }}
+                className="inline-flex items-center justify-center gap-3 rounded-full border border-emerald-300/30 bg-black/45 px-8 py-4 text-sm font-semibold uppercase tracking-[0.24em] text-white shadow-2xl shadow-black/30 backdrop-blur-md transition hover:border-emerald-300/70 hover:bg-white/10"
               >
-                <MixcloudIcon />
-                Listen on Mixcloud
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1DB954] text-slate-950">
+                  <SpotifyIcon />
+                </span>
+                Sample playlists
               </a>
           </div>
 
@@ -699,6 +619,7 @@ export default function Home() {
                   href={`https://wa.me/${phoneNumberInternational}`}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={reportWhatsAppConversion}
                   className="hover:underline"
                 >
                   {phone}
@@ -731,9 +652,9 @@ export default function Home() {
           <div className="flex justify-center pb-4">
             <BrandLogo showName={false} markClassName="p-2" />
           </div>
-          <p>© 2026 Happily Ever After-Parties NE LTD. All rights reserved. | Fully insured & PAT tested for events across North East England</p>
+          <p>© 2026 Happily Ever After-Parties NE LTD. All rights reserved. | Fully insured & PAT tested for events across Yorkshire, Durham, Cumbria and Northumberland</p>
           <p className="flex flex-wrap justify-center gap-x-5 gap-y-2">
-            <Link href="/blog" className="transition hover:text-white">North East wedding planning journal</Link>
+            <Link href="/blog" className="transition hover:text-white">Wedding planning journal</Link>
             <Link href="/privacy" className="transition hover:text-white">Privacy policy</Link>
           </p>
           <p>Ltd. Company No. 17153234</p>

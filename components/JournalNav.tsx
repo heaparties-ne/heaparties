@@ -1,11 +1,10 @@
 import Link from "next/link";
 import BrandLogo from "./BrandLogo";
-import SignOutButton from "./SignOutButton";
 
-export default function JournalNav({ showSignOut = true }: { showSignOut?: boolean }) {
+export default function JournalNav() {
   return (
     <nav className="fixed top-0 z-50 w-full border-b border-slate-800 bg-slate-950/95 backdrop-blur-sm">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <BrandLogo />
         <div className="flex items-center gap-5">
           <Link
@@ -20,7 +19,6 @@ export default function JournalNav({ showSignOut = true }: { showSignOut?: boole
           >
             Home
           </Link>
-          {showSignOut ? <SignOutButton /> : null}
         </div>
       </div>
     </nav>

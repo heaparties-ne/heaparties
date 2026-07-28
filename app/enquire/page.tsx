@@ -4,7 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import BrandLogo from "../../components/BrandLogo";
-import SignOutButton from "../../components/SignOutButton";
+
+declare global {
+  interface Window {
+    gtag_report_conversion?: (url?: string) => boolean;
+  }
+}
 
 const initialForm = {
   contactName: "",
@@ -12,6 +17,7 @@ const initialForm = {
   location: "",
   phoneNumber: "",
   requirements: "",
+  customerMatchConsent: false,
 };
 
 function formatDateInput(value: string) {
@@ -30,7 +36,10 @@ export default function EnquirePage() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [message, setMessage] = useState("");
 
-  const updateField = (field: keyof typeof form, value: string) => {
+  const updateField = <K extends keyof typeof initialForm,>(
+    field: K,
+    value: (typeof initialForm)[K],
+  ) => {
     setForm((current) => ({ ...current, [field]: value }));
   };
 
@@ -46,6 +55,7 @@ export default function EnquirePage() {
     });
 
     if (response.ok) {
+      window.gtag_report_conversion?.();
       setStatus("sent");
       setForm(initialForm);
       setMessage("Thanks. Your enquiry has been sent.");
@@ -58,13 +68,12 @@ export default function EnquirePage() {
   return (
     <main className="min-h-screen overflow-hidden bg-slate-950 text-slate-100">
       <nav className="fixed top-0 z-50 w-full border-b border-slate-800 bg-slate-950/95 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
           <BrandLogo />
           <div className="flex items-center gap-5">
             <Link href="/" className="text-sm font-medium uppercase tracking-[0.24em] text-slate-300 transition hover:text-white">
               Back
             </Link>
-            <SignOutButton />
           </div>
         </div>
       </nav>
@@ -156,6 +165,24 @@ export default function EnquirePage() {
                   rows={6}
                   className="mt-3 w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-4 text-white outline-none transition focus:border-violet-300"
                 />
+              </label>
+
+              <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-slate-700 bg-slate-900/70 p-4 text-slate-300 sm:col-span-2">
+                <input
+                  type="checkbox"
+                  checked={form.customerMatchConsent}
+                  onChange={(event) => updateField("customerMatchConsent", event.target.checked)}
+                  className="mt-1 h-4 w-4 shrink-0 accent-violet-400"
+                />
+                <span className="text-sm leading-relaxed">
+                  I agree that my contact details may be securely shared with Google to measure
+                  advertising and create matched advertising audiences. This is optional and I can
+                  withdraw my consent at any time. See the{" "}
+                  <Link href="/privacy" className="text-violet-300 transition hover:text-violet-200">
+                    privacy policy
+                  </Link>
+                  .
+                </span>
               </label>
             </div>
 

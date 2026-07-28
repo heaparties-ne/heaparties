@@ -11,6 +11,7 @@ type EnquiryBody = {
   location?: string;
   phoneNumber?: string;
   requirements?: string;
+  customerMatchConsent?: boolean;
 };
 
 function formatUkDate(dateValue: string) {
@@ -48,6 +49,7 @@ export async function POST(req: NextRequest) {
   const location = body.location?.trim() || "Not provided";
   const phoneNumber = body.phoneNumber?.trim() || "Not provided";
   const requirements = body.requirements?.trim() || "Not provided";
+  const customerMatchConsent = body.customerMatchConsent === true;
   const ipLocation = getIpLocation(req);
 
   if (!resendApiKey || !enquiryFromEmail) {
@@ -73,6 +75,8 @@ export async function POST(req: NextRequest) {
     "",
     "Requirements:",
     requirements,
+    "",
+    `Google advertising data sharing consent: ${customerMatchConsent ? "Granted" : "Not granted"}`,
     "",
     "Submission details:",
     `IP Location: ${ipLocation}`,

@@ -16,7 +16,7 @@ function LogoMark({ className = "" }: { className?: string }) {
         alt="Happily Ever After-Parties NE"
         width={144}
         height={144}
-        className="brand-logo-mark h-24 w-24 object-contain invert brightness-200 drop-shadow-[0_10px_30px_rgba(255,255,255,0.18)] md:h-28 md:w-28"
+        className="brand-logo-mark h-24 w-24 scale-[1.6] object-contain invert brightness-200 drop-shadow-[0_10px_30px_rgba(255,255,255,0.18)] md:h-28 md:w-28"
         priority
       />
     </div>

@@ -76,8 +76,8 @@ function LoginForm() {
             <span className="text-violet-300">coming soon.</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg font-light leading-relaxed text-slate-200 lg:mx-0">
-            A fresh wedding and event DJ experience for North East England, built around brilliant music,
-            packed dancefloors and celebrations that feel completely yours.
+            A fresh wedding and event DJ experience across Yorkshire, Durham, Cumbria and Northumberland,
+            built around brilliant music, packed dancefloors and celebrations that feel completely yours.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3 text-xs text-gray-200 lg:justify-start">
             <span className="inline-flex items-center rounded-full border border-white/20 bg-black/35 px-4 py-2">

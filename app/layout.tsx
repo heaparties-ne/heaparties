@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Geist, Geist_Mono } from "next/font/google";
+import CookieConsent from "@/components/CookieConsent";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -26,7 +27,7 @@ const businessStructuredData = {
   telephone: "+447356211274",
   email: "enquiries@heaparties-ne.co.uk",
   description:
-    "Owner-led wedding and event DJ services across North East England, with professional sound, lighting and music tailored to each celebration.",
+    "Owner-led wedding and event DJ services across Yorkshire, Durham, Cumbria and Northumberland, with professional sound, lighting and music tailored to each celebration.",
   priceRange: "££",
   hasOfferCatalog: {
     "@type": "OfferCatalog",
@@ -37,7 +38,7 @@ const businessStructuredData = {
         itemOffered: {
           "@type": "Service",
           name: "Wedding DJ service",
-          areaServed: "North East England",
+          areaServed: "Yorkshire, Durham, Cumbria and Northumberland",
         },
       },
       {
@@ -45,20 +46,19 @@ const businessStructuredData = {
         itemOffered: {
           "@type": "Service",
           name: "Event DJ service",
-          areaServed: "North East England",
+          areaServed: "Yorkshire, Durham, Cumbria and Northumberland",
         },
       },
     ],
   },
   areaServed: [
     "Teesside",
+    "Yorkshire",
     "County Durham",
-    "Tyne and Wear",
+    "Cumbria",
     "Northumberland",
-    "North Yorkshire",
-    "North East England",
   ],
-  sameAs: ["https://www.mixcloud.com/HappilyEverAfter-Parties/"],
+  sameAs: ["https://open.spotify.com/user/31k747dtbsgpaszqbkkqvt47id6i"],
   contactPoint: {
     "@type": "ContactPoint",
     telephone: "+447356211274",
@@ -72,13 +72,17 @@ const businessStructuredData = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.heaparties-ne.co.uk"),
   title: {
-    default: "North East England Weddings & Events, Expertly Soundtracked",
+    default: "Yorkshire, Durham, Cumbria & Northumberland Weddings & Events",
     template: "%s | Happily Ever After-Parties NE",
   },
-  description: "Owner-led wedding and event DJ services across North East England, crafted around your crowd, your venue and your big moments.",
+  description: "Owner-led wedding and event DJ services across Yorkshire, Durham, Cumbria and Northumberland, crafted around your crowd, your venue and your big moments.",
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
-    title: "North East England Weddings & Events, Expertly Soundtracked",
-    description: "Owner-led wedding and event DJ services across North East England, crafted around your crowd, your venue and your big moments.",
+    title: "Yorkshire, Durham, Cumbria & Northumberland Weddings & Events",
+    description: "Owner-led wedding and event DJ services across Yorkshire, Durham, Cumbria and Northumberland, crafted around your crowd, your venue and your big moments.",
     url: "https://www.heaparties-ne.co.uk",
     siteName: "Happily Ever After-Parties NE",
     images: ["/images/images/north-east-wedding-dj-hero.jpeg"],
@@ -101,12 +105,55 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18328463194"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+
+              var storedConsent = null;
+              try {
+                storedConsent = JSON.parse(localStorage.getItem('hea_cookie_consent'));
+              } catch (error) {}
+
+              gtag('consent', 'default', {
+                'ad_storage': storedConsent && storedConsent.advertising ? 'granted' : 'denied',
+                'analytics_storage': storedConsent && storedConsent.analytics ? 'granted' : 'denied',
+                'ad_user_data': storedConsent && storedConsent.advertising ? 'granted' : 'denied',
+                'ad_personalization': storedConsent && storedConsent.advertising ? 'granted' : 'denied',
+                'wait_for_update': 500
+              });
+              gtag('js', new Date());
+              gtag('config', 'AW-18328463194');
+
+              function gtag_report_conversion(url) {
+                var callback = function () {
+                  if (typeof(url) != 'undefined') {
+                    window.location = url;
+                  }
+                };
+                gtag('event', 'conversion', {
+                  'send_to': 'AW-18328463194/D1AlCI7GzdMcENrO2KNE',
+                  'event_callback': callback
+                });
+                return false;
+              }
+            `,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(businessStructuredData) }}
         />
         {children}
+        <CookieConsent />
         <Analytics />
         <SpeedInsights />
       </body>
