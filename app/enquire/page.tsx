@@ -26,6 +26,15 @@ function getTodayIsoDate() {
   return new Date(today.getTime() - timezoneOffset).toISOString().slice(0, 10);
 }
 
+function formatPhoneNumber(value: string) {
+  const allowedCharacters = value.replace(/[^\d+]/g, "");
+  const normalized = allowedCharacters.startsWith("+")
+    ? `+${allowedCharacters.slice(1).replace(/\+/g, "")}`
+    : allowedCharacters.replace(/\+/g, "");
+
+  return normalized.slice(0, 11);
+}
+
 export default function EnquirePage() {
   const dateInputRef = useRef<HTMLInputElement>(null);
   const [form, setForm] = useState(initialForm);
@@ -149,8 +158,13 @@ export default function EnquirePage() {
                 <span className="text-sm uppercase tracking-[0.24em]">Phone Number</span>
                 <input
                   type="tel"
+                  inputMode="tel"
+                  maxLength={11}
+                  pattern="\+?[0-9]*"
                   value={form.phoneNumber}
-                  onChange={(event) => updateField("phoneNumber", event.target.value)}
+                  onChange={(event) =>
+                    updateField("phoneNumber", formatPhoneNumber(event.target.value))
+                  }
                   className="mt-3 w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-4 text-white outline-none transition focus:border-violet-300"
                 />
               </label>
