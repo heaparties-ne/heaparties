@@ -17,7 +17,7 @@ function LogoMark({ className = "" }: { className?: string }) {
         width={276}
         height={384}
         unoptimized
-        className="brand-logo-mark h-24 w-24 scale-[1.6] object-contain drop-shadow-[0_10px_30px_rgba(255,255,255,0.18)] md:h-28 md:w-28"
+        className="brand-logo-mark h-14 w-14 scale-[1.15] object-contain drop-shadow-[0_10px_30px_rgba(255,255,255,0.18)] md:h-16 md:w-16"
       />
     </div>
   );
