@@ -12,12 +12,12 @@ function LogoMark({ className = "" }: { className?: string }) {
   return (
     <div className={`inline-flex items-center justify-center ${className}`}>
       <Image
-        src="/logo.png"
+        src="/images/optimized/hea-logo-mark-white-384.webp"
         alt="Happily Ever After-Parties NE"
-        width={144}
-        height={144}
-        className="brand-logo-mark h-24 w-24 scale-[1.6] object-contain invert brightness-200 drop-shadow-[0_10px_30px_rgba(255,255,255,0.18)] md:h-28 md:w-28"
-        priority
+        width={276}
+        height={384}
+        unoptimized
+        className="brand-logo-mark h-24 w-24 scale-[1.6] object-contain drop-shadow-[0_10px_30px_rgba(255,255,255,0.18)] md:h-28 md:w-28"
       />
     </div>
   );

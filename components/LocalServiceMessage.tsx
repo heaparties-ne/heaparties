@@ -7,13 +7,25 @@ export default function LocalServiceMessage() {
 
   useEffect(() => {
     const controller = new AbortController();
+    const runWhenIdle =
+      window.requestIdleCallback ||
+      ((callback: IdleRequestCallback) => window.setTimeout(callback, 1200));
 
-    fetch("/api/location", { signal: controller.signal })
-      .then((response) => (response.ok ? response.json() : null))
-      .then((data: { city?: string } | null) => setCity(data?.city || ""))
-      .catch(() => undefined);
+    const idleId = runWhenIdle(() => {
+      fetch("/api/location", { signal: controller.signal })
+        .then((response) => (response.ok ? response.json() : null))
+        .then((data: { city?: string } | null) => setCity(data?.city || ""))
+        .catch(() => undefined);
+    });
 
-    return () => controller.abort();
+    return () => {
+      controller.abort();
+      if (typeof idleId === "number") {
+        window.clearTimeout(idleId);
+      } else {
+        window.cancelIdleCallback?.(idleId);
+      }
+    };
   }, []);
 
   if (!city) return null;

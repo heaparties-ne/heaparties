@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import CookieConsent from "@/components/CookieConsent";
 import "./globals.css";
 
@@ -72,22 +73,28 @@ const businessStructuredData = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.heaparties-ne.co.uk"),
   title: {
-    default: "Yorkshire, Durham, Cumbria & Northumberland Weddings & Events",
+    default: "Wedding DJ North East, Cumbria & Yorkshire",
     template: "%s | Happily Ever After-Parties NE",
   },
-  description: "Owner-led wedding and event DJ services across Yorkshire, Durham, Cumbria and Northumberland, crafted around your crowd, your venue and your big moments.",
+  description: "Owner-led wedding DJ and event entertainment across Teesside, County Durham, Northumberland, Cumbria and Yorkshire, built around your venue, guests and dancefloor.",
   robots: {
     index: true,
     follow: true,
   },
   openGraph: {
-    title: "Yorkshire, Durham, Cumbria & Northumberland Weddings & Events",
-    description: "Owner-led wedding and event DJ services across Yorkshire, Durham, Cumbria and Northumberland, crafted around your crowd, your venue and your big moments.",
+    title: "Wedding DJ North East, Cumbria & Yorkshire",
+    description: "Owner-led wedding DJ and event entertainment across Teesside, County Durham, Northumberland, Cumbria and Yorkshire, built around your venue, guests and dancefloor.",
     url: "https://www.heaparties-ne.co.uk",
     siteName: "Happily Ever After-Parties NE",
     images: ["/images/images/north-east-wedding-dj-hero.jpeg"],
     locale: "en_GB",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Wedding DJ North East, Cumbria & Yorkshire",
+    description: "Owner-led wedding DJ and event entertainment across Teesside, County Durham, Northumberland, Cumbria and Yorkshire.",
+    images: ["/images/optimized/north-east-wedding-dj-hero-fallback-1920.jpg"],
   },
   icons: {
     icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
@@ -106,11 +113,18 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=AW-18328463194"
+        <link
+          rel="preload"
+          as="image"
+          href="/images/optimized/north-east-wedding-dj-hero-1600.avif"
+          imageSrcSet="/images/optimized/north-east-wedding-dj-hero-1600.avif 1600w, /images/optimized/north-east-wedding-dj-hero-2400.avif 2400w"
+          imageSizes="100vw"
+          type="image/avif"
+          fetchPriority="high"
         />
-        <script
+        <Script
+          id="google-ads-consent"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
@@ -145,6 +159,11 @@ export default function RootLayout({
               }
             `,
           }}
+        />
+        <Script
+          id="google-ads-tag"
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18328463194"
         />
       </head>
       <body className="min-h-full flex flex-col">

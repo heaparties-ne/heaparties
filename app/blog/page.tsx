@@ -23,6 +23,13 @@ const venues = [
 
 const journalPosts = [
   {
+    title: "Fantails Wetheral wedding DJ near Carlisle",
+    description: "A packed dancefloor in a historic former forge, with sax, percussion and one Dido wildcard.",
+    href: "/blog/fantails-wetheral-carlisle-wedding-dj",
+    image: "/images/optimized/fantails-wetheral-carlisle-wedding-dj-dancefloor.jpg",
+    category: "Real weddings",
+  },
+  {
     title: "PAT testing week: the quiet work behind a great party",
     description: "Why testing, visual checks and careful equipment maintenance are worth asking about.",
     href: "/blog/pat-testing-week",

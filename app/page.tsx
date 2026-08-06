@@ -1,15 +1,8 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import BrandLogo from "../components/BrandLogo";
 import LocalServiceMessage from "../components/LocalServiceMessage";
-
-declare global {
-  interface Window {
-    gtag?: (...args: unknown[]) => void;
-  }
-}
+import WhatsAppLink from "../components/WhatsAppLink";
 
 // Assemble contact details client-side to avoid raw scraping in HTML
 const phoneParts = ["07356", "211274"];
@@ -34,14 +27,6 @@ const mailBody = encodeURIComponent(
 );
 const mailtoHref = `mailto:${email}?subject=${mailSubject}&body=${mailBody}`;
 const spotifyProfileUrl = "https://open.spotify.com/user/31k747dtbsgpaszqbkkqvt47id6i?si=b6f91bce12ff4428";
-
-function reportWhatsAppConversion() {
-  window.gtag?.("event", "conversion", {
-    send_to: "AW-18328463194/Wo5RCPi3z9McENrO2KNE",
-    value: 1.0,
-    currency: "GBP",
-  });
-}
 
 const testimonials = [
   {
@@ -223,23 +208,32 @@ export default function Home() {
         {/* Background image with Ken Burns effect */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <div className="kenburns-wrapper absolute inset-0">
-            <Image
-              src="/images/images/north-east-wedding-dj-hero.jpeg"
-              alt="Wedding DJ decks overlooking a celebration"
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover hero-img"
-            />
+            <picture>
+              <source
+                type="image/avif"
+                srcSet="/images/optimized/north-east-wedding-dj-hero-1600.avif 1600w, /images/optimized/north-east-wedding-dj-hero-2400.avif 2400w"
+                sizes="100vw"
+              />
+              <source
+                type="image/webp"
+                srcSet="/images/optimized/north-east-wedding-dj-hero-1600.webp 1600w, /images/optimized/north-east-wedding-dj-hero-2400.webp 2400w"
+                sizes="100vw"
+              />
+              <img
+                src="/images/optimized/north-east-wedding-dj-hero-fallback-1920.jpg"
+                srcSet="/images/optimized/north-east-wedding-dj-hero-fallback-1920.jpg 1920w"
+                sizes="100vw"
+                width={1920}
+                height={1076}
+                alt="Wedding DJ decks overlooking a celebration"
+                fetchPriority="high"
+                decoding="async"
+                className="hero-img h-full w-full object-cover"
+              />
+            </picture>
           </div>
           {/* Dark Overlay */}
           <div className="absolute inset-0 bg-black/40"></div>
-
-          {/* Light flicker overlays (pure CSS, pointer-events-none) */}
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="light light-1 absolute inset-0"></div>
-            <div className="light light-2 absolute inset-0"></div>
-          </div>
         </div>
 
         {/* Content */}
@@ -586,17 +580,14 @@ export default function Home() {
 
           <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center gap-4 mb-12">
             <div className="flex flex-col items-center gap-2">
-              <a
+              <WhatsAppLink
                 href={`https://wa.me/${phoneNumberInternational}`}
-                target="_blank"
-                rel="noreferrer"
-                onClick={reportWhatsAppConversion}
                 className="inline-flex items-center justify-center gap-3 rounded-full px-8 py-4 text-sm font-semibold uppercase tracking-[0.24em] text-white shadow-sm transition hover:brightness-110"
                 style={{ backgroundColor: "#25D366" }}
               >
                 <WhatsAppIcon />
                 Chat on WhatsApp
-              </a>
+              </WhatsAppLink>
               <span className="text-sm text-gray-300">(WhatsApp Business ready)</span>
             </div>
               <a
@@ -615,15 +606,12 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8 pt-12 border-t border-gray-700">
             <div>
               <p className="text-lg font-bold mb-2">
-                <a
+                <WhatsAppLink
                   href={`https://wa.me/${phoneNumberInternational}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={reportWhatsAppConversion}
                   className="hover:underline"
                 >
                   {phone}
-                </a>
+                </WhatsAppLink>
               </p>
               <p className="text-gray-300">Call or WhatsApp</p>
             </div>
